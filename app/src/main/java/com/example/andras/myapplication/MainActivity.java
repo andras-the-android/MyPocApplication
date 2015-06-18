@@ -5,6 +5,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.view.Menu;
@@ -19,12 +21,40 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cannond);
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_launcher)
+                        .setSmallIcon(R.drawable.icon_blue_86x86_stride)
                         .setContentTitle("My notification")
                         .setContentText("Hello World!")
+                        .setLargeIcon(bitmap)
                         .setAutoCancel(true);
+                //.setProgress(0, 0, true);
+
+        NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+        String[] events = new String[6];
+// Sets a title for the Inbox in expanded layout
+        inboxStyle.setBigContentTitle("Event tracker details:");
+
+// Moves events into the expanded layout
+        for (int i=0; i < 15; i++) {
+
+            inboxStyle.addLine("sdvoskdvpovw");
+        }
+
+        NotificationCompat.BigPictureStyle notiStyle = new
+                NotificationCompat.BigPictureStyle();
+        notiStyle.setBigContentTitle("Big Picture Expanded");
+        notiStyle.setSummaryText("Nice big picture.");
+
+
+
+// Add the big picture to the style.
+        notiStyle.bigPicture(bitmap);
+
+
+// Moves the expanded layout object into the notification object.
+        mBuilder.setStyle(notiStyle);
 // Creates an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(this, MainActivity.class);
 
