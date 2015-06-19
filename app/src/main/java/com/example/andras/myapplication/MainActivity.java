@@ -9,8 +9,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class MainActivity extends Activity {
@@ -35,17 +37,21 @@ public class MainActivity extends Activity {
         String[] events = new String[6];
 // Sets a title for the Inbox in expanded layout
         inboxStyle.setBigContentTitle("Event tracker details:");
+        inboxStyle.setSummaryText("This is the summary. Enjoy!");
 
 // Moves events into the expanded layout
-        for (int i=0; i < 15; i++) {
+        for (int i=0; i < 5; i++) {
 
-            inboxStyle.addLine("sdvoskdvpovw");
+            inboxStyle.addLine(i + ": sdvoskdvpovw");
         }
 
         NotificationCompat.BigPictureStyle notiStyle = new
                 NotificationCompat.BigPictureStyle();
         notiStyle.setBigContentTitle("Big Picture Expanded");
         notiStyle.setSummaryText("Nice big picture.");
+        //notiStyle.bigText("Big text");
+        notiStyle.setBigContentTitle("big content tite");
+        notiStyle.setSummaryText("Summary text");
 
 
 
@@ -54,7 +60,7 @@ public class MainActivity extends Activity {
 
 
 // Moves the expanded layout object into the notification object.
-        mBuilder.setStyle(notiStyle);
+        mBuilder.setStyle(inboxStyle);
 // Creates an explicit intent for an Activity in your app
         Intent resultIntent = new Intent(this, MainActivity.class);
 
@@ -73,12 +79,22 @@ public class MainActivity extends Activity {
 //                        PendingIntent.FLAG_UPDATE_CURRENT
 //                );
         mBuilder.setContentIntent(resultPendingIntent);
+        mBuilder.addAction(R.drawable.ic_launcher, "First", resultPendingIntent);
+        mBuilder.addAction(R.drawable.ic_launcher, "Second", resultPendingIntent);
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 // mId allows you to update the notification later on.
         mNotificationManager.notify(mId, mBuilder.build());
+
+        View textView = findViewById(R.id.hello_world);
+        registerForContextMenu(textView);
+
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
