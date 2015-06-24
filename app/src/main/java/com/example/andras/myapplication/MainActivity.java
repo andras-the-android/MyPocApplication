@@ -13,6 +13,7 @@ import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
@@ -26,7 +27,7 @@ public class MainActivity extends Activity {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cannond);
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.icon_blue_86x86_stride)
+                        //.setSmallIcon(R.drawable.icon_blue_86x86_stride)
                         .setContentTitle("My notification")
                         .setContentText("Hello World!")
                         .setLargeIcon(bitmap)
@@ -84,7 +85,7 @@ public class MainActivity extends Activity {
         NotificationManager mNotificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 // mId allows you to update the notification later on.
-        mNotificationManager.notify(mId, mBuilder.build());
+//        mNotificationManager.notify(mId, mBuilder.build());
 
         View textView = findViewById(R.id.hello_world);
         registerForContextMenu(textView);
@@ -92,14 +93,28 @@ public class MainActivity extends Activity {
     }
 
     @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        System.out.println("onPrepareOptionsMenuxxx");
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        if (menu.size() == 0) {
+            getMenuInflater().inflate(R.menu.menu_main, menu);
+            System.out.println("menusize: " + menu.size());
+        }
+//        MenuItem item = menu.findItem(R.id.codeversed_logo);
+//        System.out.println("onCreateContextMenuxxx" + item.isEnabled());
+        //item.setEnabled(!item.isEnabled());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        TextView actionView = (TextView) menu.findItem(R.id.action_settings).getActionView();
+        actionView.setText("I'm action view!");
         return true;
     }
 
@@ -111,9 +126,9 @@ public class MainActivity extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
