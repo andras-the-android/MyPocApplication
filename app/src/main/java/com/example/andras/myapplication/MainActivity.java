@@ -3,8 +3,6 @@ package com.example.andras.myapplication;
 import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.ClipData;
-import android.content.ClipDescription;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,59 +10,24 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.view.ContextMenu;
-import android.view.DragEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
 
     public static final int mId = 666;
-    private TextView textView;
-    private View.OnDragListener dragListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setupDragging();
         //setupNotifications();
 
-        textView = (TextView) findViewById(R.id.hello_world);
-        registerForContextMenu(textView);
-
     }
 
-    private void setupDragging() {
-        final ImageView imageView = (ImageView) findViewById(R.id.imageView);
-        imageView.setTag("iamthetag");
-
-
-        imageView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-
-                String tag = (String) v.getTag();
-                ClipData clipData = ClipData.newPlainText(tag, tag + "2");
-
-                imageView.startDrag(clipData, new View.DragShadowBuilder(v), null, 0);
-                return true;
-            }
-        });
-
-        dragListener = new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                textView.setText("Id: " + v.getId() + " event: " + event);
-                return true;
-            }
-        };
-        findViewById(R.id.main_layout).setOnDragListener(dragListener);
-        imageView.setOnDragListener(dragListener);
-    }
 
     private void setupNotifications() {
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.cannond);
@@ -171,8 +134,8 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
+
+    public void onDragNDropButtonClick(View view) {
+        startActivity(new Intent(this, DragDropActivity.class));
     }
 }

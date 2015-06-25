@@ -24,6 +24,14 @@
             android:name=".FragmentActivity"
             android:label="@string/title_activity_fragment" >
         </activity>
+        <activity
+            android:name=".DragDropActivity"
+            android:label="@string/title_activity_drag_drop"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.andras.myapplication.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

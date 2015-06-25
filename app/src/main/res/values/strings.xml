@@ -11,5 +11,7 @@
     <string name="inbox_style">Inbox Style</string>
     <string name="custom_view">Custom View</string>
     <string name="title_activity_fragment">FragmentActivity</string>
+    <string name="title_activity_drag_drop">DragDropActivity</string>
+    <string name="no_event">No event yet</string>
 
 </resources>
