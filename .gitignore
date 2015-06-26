@@ -33,4 +33,3 @@ libs/
 **/gradle
 **/src/main/jniLibs
 /*/*/aidl
-/*/*/main
