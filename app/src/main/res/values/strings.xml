@@ -13,5 +13,6 @@
     <string name="title_activity_fragment">FragmentActivity</string>
     <string name="title_activity_drag_drop">DragDropActivity</string>
     <string name="no_event">No event yet</string>
+    <string name="title_activity_notification">NotificationActivity</string>
 
 </resources>
