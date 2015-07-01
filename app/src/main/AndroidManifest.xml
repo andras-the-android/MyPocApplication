@@ -36,6 +36,11 @@
             android:name=".NotificationActivity"
             android:label="@string/title_activity_notification" >
         </activity>
+        <activity
+            android:name=".ActionBarActivity"
+            android:label="@string/title_activity_action_bar"
+            android:parentActivityName=".MainActivity">
+        </activity>
     </application>
 
 </manifest>
