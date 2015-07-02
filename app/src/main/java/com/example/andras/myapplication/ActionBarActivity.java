@@ -8,7 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,6 +16,8 @@ import android.widget.TextView;
 public class ActionBarActivity extends Activity {
 
     private ActionMode actionMode;
+    private ArrayAdapter<String> adapter;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +25,12 @@ public class ActionBarActivity extends Activity {
         setContentView(R.layout.activity_action_bar);
         getActionBar().setDisplayHomeAsUpEnabled(true);
         registerForContextMenu(findViewById(R.id.twContextMenu));
-        ListView listView = (ListView) findViewById(R.id.list_view);
-        listView.setAdapter(new ArrayAdapter<String>(this, R.layout.list_item, R.id.text_view, new String[]{"First", "Second", "Third"}));
+
+        //action mode for any item
         TextView twContextualAction = (TextView) findViewById(R.id.twContextualAction);
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        twContextualAction.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onLongClick(View view) {
                 if (actionMode != null) {
                     return false;
                 }
@@ -38,6 +40,13 @@ public class ActionBarActivity extends Activity {
                 return true;
             }
         });
+
+        //action mode for lists
+        listView = (ListView) findViewById(R.id.list_view);
+        adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.text_view, new String[]{"First", "Second", "Third"});
+        listView.setAdapter(adapter);
+        listView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
+        listView.setMultiChoiceModeListener(new MyMultiChoiceModelListener());
     }
 
     @Override
@@ -96,6 +105,8 @@ public class ActionBarActivity extends Activity {
         // may be called multiple times if the mode is invalidated.
         @Override
         public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            mode.setTitle("Action mode title");
+            mode.setSubtitle("Action mode subtitle");
             return false; // Return false if nothing is done
         }
 
@@ -117,6 +128,21 @@ public class ActionBarActivity extends Activity {
             actionMode = null;
         }
     };
+
+    private class MyMultiChoiceModelListener extends MyActionModeCallback implements AbsListView.MultiChoiceModeListener  {
+
+        @Override
+        public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+            int checkedCount = listView.getCheckedItemCount();
+            if (checkedCount > 0) {
+                mode.setSubtitle(checkedCount + " item selected");
+            } else {
+                mode.setSubtitle("Action mode subtitle");
+            }
+        }
+    }
+
+
 
 
 }
