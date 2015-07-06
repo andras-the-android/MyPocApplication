@@ -39,7 +39,15 @@
         <activity
             android:name=".ActionBarActivity"
             android:label="@string/title_activity_action_bar"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity" >
+        </activity>
+        <activity
+            android:name=".PropertyAnimationActivity"
+            android:label="@string/title_activity_property_animation"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.andras.myapplication.MainActivity" />
         </activity>
     </application>
 

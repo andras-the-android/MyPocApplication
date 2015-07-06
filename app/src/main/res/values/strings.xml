@@ -15,5 +15,6 @@
     <string name="no_event">No event yet</string>
     <string name="title_activity_notification">NotificationActivity</string>
     <string name="title_activity_action_bar">ActionBarActivity</string>
+    <string name="title_activity_property_animation">PropertyAnimationActivity</string>
 
 </resources>

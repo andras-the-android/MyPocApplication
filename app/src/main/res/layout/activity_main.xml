@@ -28,4 +28,10 @@
         android:text="Action bar"
         android:id="@+id/btnActionBar"
         android:onClick="onActionBarButtonClick"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Property animation"
+        android:onClick="onPropertyAnimButtonClick"/>
 </LinearLayout>

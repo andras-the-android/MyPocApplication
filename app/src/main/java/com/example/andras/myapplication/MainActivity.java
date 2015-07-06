@@ -25,4 +25,8 @@ public class MainActivity extends Activity {
     public void onActionBarButtonClick(View view) {
         startActivity(new Intent(this, ActionBarActivity.class));
     }
+
+    public void onPropertyAnimButtonClick(View view) {
+        startActivity(new Intent(this, PropertyAnimationActivity.class));
+    }
 }
