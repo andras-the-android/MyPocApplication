@@ -77,7 +77,7 @@ public class PropertyAnimationActivity extends Activity {
     }
 
     private void configureViewPropertyAnimator() {
-        imageView.animate().y(200).alpha(0.1f).setInterpolator(new BounceInterpolator());
+        imageView.animate().translationY(200f).alpha(0.1f).setInterpolator(new BounceInterpolator());
     }
 
     private ValueAnimator configureValueAnimator() {

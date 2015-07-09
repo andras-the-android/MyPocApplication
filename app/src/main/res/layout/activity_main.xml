@@ -34,4 +34,10 @@
         android:layout_height="wrap_content"
         android:text="Property animation"
         android:onClick="onPropertyAnimButtonClick"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Maps"
+        android:onClick="onMapsButtonClick"/>
 </LinearLayout>

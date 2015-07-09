@@ -29,4 +29,8 @@ public class MainActivity extends Activity {
     public void onPropertyAnimButtonClick(View view) {
         startActivity(new Intent(this, PropertyAnimationActivity.class));
     }
+
+    public void onMapsButtonClick(View view) {
+        startActivity(new Intent(this, MapsActivity.class));
+    }
 }
