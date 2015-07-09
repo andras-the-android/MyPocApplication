@@ -12,10 +12,37 @@ android {
         versionName "1.0"
     }
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+            resValue "string", "maps_key", "debugkey"
         }
+
+//        release {
+//            minifyEnabled true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            proguardFiles 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+//            resValue "string", "maps_key", "releasekey"
+//        }
+    }
+
+    signingConfigs {
+
+        debug {
+            storeFile file("debug.keystore")
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storePassword 'android'
+        }
+
+//        release {
+//            storeFile file(System.getenv("keyfile"))
+//            storePassword System.getenv("pwd")
+//            keyAlias System.getenv("alias")
+//            keyPassword System.getenv("pwd")
+//        }
     }
 }
 
