@@ -7,13 +7,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
+        android:id="@+id/text_view"
         android:text="Other content"/>
 
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
         android:layout_height="match_parent" android:id="@+id/map"
-        tools:context="com.example.andras.myapplication.MapsActivity"
-        android:name="com.google.android.gms.maps.MapFragment" />
+        tools:context="com.example.andras.myapplication.MapsActivity"/>
 
 </LinearLayout>
