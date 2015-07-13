@@ -33,4 +33,8 @@ public class MainActivity extends Activity {
     public void onMapsButtonClick(View view) {
         startActivity(new Intent(this, MapsActivity.class));
     }
+
+    public void onLocationButtonClick(View view) {
+        startActivity(new Intent(this, LocationActivity.class));
+    }
 }
