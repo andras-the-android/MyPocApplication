@@ -37,4 +37,8 @@ public class MainActivity extends Activity {
     public void onLocationButtonClick(View view) {
         startActivity(new Intent(this, LocationActivity.class));
     }
+
+    public void onDesignDemoButtonClick(View view) {
+        startActivity(new Intent(this, MaterialTestActivity.class));
+    }
 }

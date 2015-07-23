@@ -18,5 +18,6 @@
     <string name="title_activity_property_animation">PropertyAnimationActivity</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_location">LocationActivity</string>
+    <string name="title_activity_material_test">MaterialTestActivity</string>
 
 </resources>
