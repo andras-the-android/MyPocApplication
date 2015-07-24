@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Base.Theme.HMKCodeApp" parent="Theme.AppCompat.NoActionBar">
+    <style name="Base.Theme.HMKCodeApp" parent="Theme.AppCompat">
 
         <item name="colorPrimary">@color/my_primary</item>
 
@@ -33,7 +33,7 @@
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
+    <style name="MaterialTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
