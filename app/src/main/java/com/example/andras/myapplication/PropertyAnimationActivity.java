@@ -50,6 +50,8 @@ public class PropertyAnimationActivity extends Activity {
 
     @NonNull
     private ObjectAnimator configureObjectAnimator() {
+        //CSAK OLYAN PROPERTIVEL FOG MŰKÖDNI, AMINEK VAN PUBLIKUS SETTERE!!!
+        //esetenként előfordulhat value animatorhoz hasonlóan requestLayout()-ot kell hívni a update listenerben
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(imageView, "rotation", 0f, 90f);
         objectAnimator.addListener(new Animator.AnimatorListener() {
             @Override

@@ -1,8 +1,13 @@
 package com.example.andras.myapplication;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -15,15 +20,25 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnClick;
+
 public class MapsActivity extends Activity {
 
 
     private MapFragment mapFragment;
 
+    @InjectView(R.id.detail)
+    View detailView;
+    @InjectView(R.id.map_layout)
+    LinearLayout layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        ButterKnife.inject(this);
         setUpMapIfNeeded();
     }
 
@@ -77,6 +92,28 @@ public class MapsActivity extends Activity {
         CameraPosition position = new CameraPosition.Builder().target(latLng).zoom(20).build();
 
         map.animateCamera(CameraUpdateFactory.newCameraPosition(position));
+        map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+            @Override
+            public void onMapClick(LatLng latLng) {
+//                ObjectAnimator animator = ObjectAnimator.ofFloat(detailView, "rotation", 0, 90);
+//                animator.setDuration(1000).addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//                    @Override
+//                    public void onAnimationUpdate(ValueAnimator animation) {
+//                        layout.requestLayout();
+//                    }
+//                });
+                ValueAnimator valueAnimator = ValueAnimator.ofFloat(1f, 2f);
+                final ViewGroup.LayoutParams layoutParams = detailView.getLayoutParams();
+                valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        layout.setWeightSum((Float) animation.getAnimatedValue());
+                        layout.requestLayout();
+                    }
+                });
+                valueAnimator.start();
+            }
+        });
     }
 
     private class MyMapReadyCallback implements OnMapReadyCallback {
