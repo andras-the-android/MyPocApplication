@@ -51,7 +51,9 @@ public class PropertyAnimationActivity extends Activity {
     @NonNull
     private ObjectAnimator configureObjectAnimator() {
         //CSAK OLYAN PROPERTIVEL FOG MŰKÖDNI, AMINEK VAN PUBLIKUS SETTERE!!!
-        //esetenként előfordulhat value animatorhoz hasonlóan requestLayout()-ot kell hívni a update listenerben
+        //ha nem a támogatott (ld fent) attributomukot használjuk,
+        //akkor value animatorhoz hasonlóan requestLayout()-ot kell hívni a update listenerben
+        //ezért nem látom túl sok értelmét a használatának
         ObjectAnimator objectAnimator = ObjectAnimator.ofFloat(imageView, "rotation", 0f, 90f);
         objectAnimator.addListener(new Animator.AnimatorListener() {
             @Override

@@ -7,6 +7,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -95,15 +96,8 @@ public class MapsActivity extends Activity {
         map.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-//                ObjectAnimator animator = ObjectAnimator.ofFloat(detailView, "rotation", 0, 90);
-//                animator.setDuration(1000).addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-//                    @Override
-//                    public void onAnimationUpdate(ValueAnimator animation) {
-//                        layout.requestLayout();
-//                    }
-//                });
                 ValueAnimator valueAnimator = ValueAnimator.ofFloat(1f, 2f);
-                final ViewGroup.LayoutParams layoutParams = detailView.getLayoutParams();
+                valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
                 valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator animation) {
@@ -120,7 +114,7 @@ public class MapsActivity extends Activity {
 
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            ((TextView)findViewById(R.id.text_view)).setText("Map ready!");
+            //((TextView)findViewById(R.id.text_view)).setText("Map ready!");
             setUpMap();
         }
     }
