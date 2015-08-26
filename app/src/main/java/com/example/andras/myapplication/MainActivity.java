@@ -41,4 +41,8 @@ public class MainActivity extends Activity {
     public void onDesignDemoButtonClick(View view) {
         startActivity(new Intent(this, MaterialTestActivity.class));
     }
+
+    public void onGesturesButtonClick(View view) {
+        startActivity(new Intent(this, GesturesActivity.class));
+    }
 }

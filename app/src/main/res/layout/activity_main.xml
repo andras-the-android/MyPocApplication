@@ -4,52 +4,74 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
-    android:gravity="center"
     android:id="@+id/main_layout"
     android:orientation="vertical">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="drag &amp; drop"
-        android:id="@+id/btnDragDrop"
-        android:onClick="onDragNDropButtonClick"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Notification"
-        android:id="@+id/btnNotification"
-        android:onClick="onNotificationButtonClick"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Action bar"
-        android:id="@+id/btnActionBar"
-        android:onClick="onActionBarButtonClick"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="drag &amp; drop"
+                android:id="@+id/btnDragDrop"
+                android:onClick="onDragNDropButtonClick"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Property animation"
-        android:onClick="onPropertyAnimButtonClick"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notification"
+                android:id="@+id/btnNotification"
+                android:onClick="onNotificationButtonClick"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Maps"
-        android:onClick="onMapsButtonClick"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Action bar"
+                android:id="@+id/btnActionBar"
+                android:onClick="onActionBarButtonClick"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Location"
-        android:onClick="onLocationButtonClick"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Property animation"
+                android:onClick="onPropertyAnimButtonClick"/>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Design demo"
-        android:onClick="onDesignDemoButtonClick"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Maps"
+                android:onClick="onMapsButtonClick"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:onClick="onLocationButtonClick"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Design demo"
+                android:onClick="onDesignDemoButtonClick"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gestures"
+                android:onClick="onGesturesButtonClick"/>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </LinearLayout>

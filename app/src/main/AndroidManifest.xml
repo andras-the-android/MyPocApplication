@@ -13,7 +13,7 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -89,7 +89,15 @@
         <activity
             android:name=".MaterialTestActivity"
             android:label="@string/title_activity_material_test"
-            android:theme="@style/MaterialTheme">
+            android:theme="@style/MaterialTheme" >
+        </activity>
+        <activity
+            android:name=".GesturesActivity"
+            android:label="@string/title_activity_gestures"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.andras.myapplication.MainActivity" />
         </activity>
     </application>
 
