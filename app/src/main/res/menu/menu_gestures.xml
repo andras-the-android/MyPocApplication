@@ -17,5 +17,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/common"  android:title="Common gestures"/>
     <item android:id="@+id/track_velocity"  android:title="Track velocity"/>
+    <item android:id="@+id/track_multitouch"  android:title="Track multi-touch"/>
     <item android:id="@+id/clear" android:showAsAction="ifRoom|withText" android:title="Clear" />
 </menu>

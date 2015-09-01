@@ -3,6 +3,7 @@ package com.example.andras.myapplication;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.VelocityTrackerCompat;
 import android.view.GestureDetector;
 import android.view.Menu;
@@ -30,8 +31,7 @@ public class GesturesActivity extends Activity {
         gestureView.setClickable(true);
         gestureView.setFocusable(true);
 
-        //trackCommonGestures();
-        trackVelocity();
+        trackCommonGestures();
         initializeLogging();
 
     }
@@ -66,14 +66,9 @@ public class GesturesActivity extends Activity {
 
                 switch(action) {
                     case MotionEvent.ACTION_DOWN:
-                        if(mVelocityTracker == null) {
-                            // Retrieve a new VelocityTracker object to watch the velocity of a motion.
-                            mVelocityTracker = VelocityTracker.obtain();
-                        }
-                        else {
-                            // Reset the velocity tracker back to its initial state.
-                            mVelocityTracker.clear();
-                        }
+                        // Retrieve a new VelocityTracker object to watch the velocity of a motion.
+                        mVelocityTracker = VelocityTracker.obtain();
+
                         // Add a user's movement to the tracker.
                         mVelocityTracker.addMovement(event);
                         break;
@@ -96,9 +91,70 @@ public class GesturesActivity extends Activity {
                     case MotionEvent.ACTION_CANCEL:
                         // Return a VelocityTracker object back to be re-used by others.
                         mVelocityTracker.recycle();
+                        mVelocityTracker = null;
                         break;
                 }
                 return true;
+            }
+        });
+    }
+
+    private void trackMultitouchEvents() {
+        gestureView.setOnTouchListener(new View.OnTouchListener() {
+
+
+            public int mActivePointerId;
+            public static final String DEBUG_TAG = "";
+            private int counter;
+
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                // Get the pointer ID
+                mActivePointerId = event.getPointerId(0);
+
+
+                int action = MotionEventCompat.getActionMasked(event);
+                // Get the index of the pointer associated with the action.
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                //!!!!ACTION_MOVE esetben mindig 0 lesz a visszatérési érték, szóval ilyenkor
+                // végig kell iterálni az összes pointeren
+                int index = MotionEventCompat.getActionIndex(event);
+                int xPos = -1;
+                int yPos = -1;
+
+
+                String eventType = event.getPointerCount() > 1 ? "multitouch " : "single touch ";
+                // The coordinates of the current screen contact, relative to
+                // the responding View or Activity.
+                xPos = (int)MotionEventCompat.getX(event, index);
+                yPos = (int)MotionEventCompat.getY(event, index);
+                Log.d(DEBUG_TAG, counter++ + ": The action is " + eventType + actionToString(action)+ " (x:" + xPos +", y:" + yPos + ") index:" + index);
+
+                // ... Many touch events later...
+
+                // Use the pointer ID to find the index of the active pointer
+                // and fetch its position
+                int pointerIndex = event.findPointerIndex(mActivePointerId);
+                // Get the pointer's current position
+                float x = event.getX(pointerIndex);
+                float y = event.getY(pointerIndex);
+
+                return true;
+            }
+
+            // Given an action int, returns a string description
+            private String actionToString(int action) {
+                switch (action) {
+
+                    case MotionEvent.ACTION_DOWN: return "Down";
+                    case MotionEvent.ACTION_MOVE: return "Move";
+                    case MotionEvent.ACTION_POINTER_DOWN: return "Pointer Down";
+                    case MotionEvent.ACTION_UP: return "Up";
+                    case MotionEvent.ACTION_POINTER_UP: return "Pointer Up";
+                    case MotionEvent.ACTION_OUTSIDE: return "Outside";
+                    case MotionEvent.ACTION_CANCEL: return "Cancel";
+                }
+                return "";
             }
         });
     }
@@ -115,6 +171,7 @@ public class GesturesActivity extends Activity {
         switch (item.getItemId()) {
             case R.id.common : clearLog(); trackCommonGestures(); break;
             case R.id.track_velocity : clearLog(); trackVelocity(); break;
+            case R.id.track_multitouch : clearLog(); trackMultitouchEvents(); break;
             case R.id.clear : clearLog(); break;
         }
         return true;
