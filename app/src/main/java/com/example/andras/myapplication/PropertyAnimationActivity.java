@@ -50,7 +50,7 @@ public class PropertyAnimationActivity extends Activity {
 
     @NonNull
     private ObjectAnimator configureObjectAnimator() {
-        //CSAK OLYAN PROPERTIVEL FOG MŰKÖDNI, AMINEK VAN PUBLIKUS SETTERE!!!
+        //CSAK OLYAN PROPERTYVEL FOG MŰKÖDNI, AMINEK VAN PUBLIKUS SETTERE!!!
         //ha nem a támogatott (ld fent) attributomukot használjuk,
         //akkor value animatorhoz hasonlóan requestLayout()-ot kell hívni a update listenerben
         //ezért nem látom túl sok értelmét a használatának

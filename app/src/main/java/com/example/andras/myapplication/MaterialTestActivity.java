@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -22,6 +23,8 @@ public class MaterialTestActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     @InjectView(R.id.toolbar)
     Toolbar toolbar;
+    @InjectView(R.id.drag_overlay)
+    ImageView dragOverlay ;
 
     ActionBarDrawerToggle drawerToggle;
 
@@ -37,6 +40,7 @@ public class MaterialTestActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(new MaterialTestAdapter());
+        recyclerView.addOnItemTouchListener(new DragController(recyclerView, dragOverlay));
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
