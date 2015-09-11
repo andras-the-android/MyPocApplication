@@ -87,7 +87,7 @@
                 android:value="com.example.andras.myapplication.LocationActivity" />
         </activity>
         <activity
-            android:name=".MaterialTestActivity"
+            android:name=".material.MaterialTestActivity"
             android:label="@string/title_activity_material_test"
             android:theme="@style/MaterialTheme" >
         </activity>

@@ -1,9 +1,11 @@
-package com.example.andras.myapplication;
+package com.example.andras.myapplication.material;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.andras.myapplication.R;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;

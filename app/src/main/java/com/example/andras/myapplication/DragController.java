@@ -10,6 +10,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.andras.myapplication.material.MaterialTestAdapter;
+
 /**
  * Based on:
  *  https://bitbucket.org/StylingAndroid/material/src/9dec8d35b19fb91dec603672b10e84acc1bd0522/mobile/src/main/java/com/stylingandroid/materialrss/?at=Part1

@@ -4,11 +4,11 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.andras.myapplication.MaterialTestActivity">
+    tools:context="com.example.andras.myapplication.material.MaterialTestActivity">
 
     <android.support.design.widget.CoordinatorLayout android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.example.andras.myapplication.MaterialTestActivity">
+        tools:context="com.example.andras.myapplication.material.MaterialTestActivity">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -28,12 +28,12 @@
 
             </android.support.design.widget.AppBarLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recyclerView"
+            <FrameLayout
+                android:id="@+id/framelayout"
                 android:layout_below="@+id/app_bar_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-            </android.support.v7.widget.RecyclerView>
+            </FrameLayout>
 
         </RelativeLayout>
 
@@ -46,10 +46,12 @@
             android:layout_margin="30dp"
             android:src="@drawable/abc_btn_rating_star_off_mtrl_alpha"
             app:fabSize="normal"
-            app:layout_anchor="@id/recyclerView"
+            app:layout_anchor="@id/framelayout"
             app:layout_anchorGravity="bottom|right"/>
 
     </android.support.design.widget.CoordinatorLayout>
+
+
 
     <!-- layout for drawer
     From documentation
@@ -57,24 +59,17 @@
     To use a DrawerLayout, position your primary content view as the first child with a width and height of match_parent.
     Add drawers as child views after the main content view and set the layout_gravity appropriately.
     Drawers commonly use match_parent for height with a fixed width.
+
     -->
-    <LinearLayout
+    <!-- a navigationView-nak mindig az utolsó elemnek kell lennie a drawerlayoutban, különben a listener nem fog meghívódni -->
+    <android.support.design.widget.NavigationView
+        android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#ffffff"
-        android:orientation="vertical">
+        app:itemIconTint="#333"
+        app:itemTextColor="#333"
+        app:menu="@menu/menu_nav_drawer" />
 
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:id="@+id/drag_overlay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@null" />
-    </FrameLayout>
 
 </android.support.v4.widget.DrawerLayout>

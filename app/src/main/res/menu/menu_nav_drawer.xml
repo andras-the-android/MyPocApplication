@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/nav_drawer_recycleview" android:title="Recycle View"/>
+    <item android:id="@+id/nav_drawer_other" android:title="Other"/>
+
+</menu>

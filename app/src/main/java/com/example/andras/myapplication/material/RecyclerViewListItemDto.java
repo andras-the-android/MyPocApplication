@@ -1,4 +1,4 @@
-package com.example.andras.myapplication;
+package com.example.andras.myapplication.material;
 
 /**
  * Created by Andras_Nemeth on 2015.09.02..

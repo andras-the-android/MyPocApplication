@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.andras.myapplication.material.MaterialTestActivity;
+
 
 public class MainActivity extends Activity {
 
