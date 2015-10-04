@@ -54,35 +54,35 @@ public class StreamTest {
         System.out.println("Using Java 8: ");
         System.out.println("List: " +strings);
 
-        count = strings.stream().filter(string->string.isEmpty()).count();
-        System.out.println("Empty Strings: " + count);
-
-        count = strings.stream().filter(string -> string.length() == 3).count();
-        System.out.println("Strings of length 3: " + count);
-
-        filtered = strings.stream().filter(string ->!string.isEmpty()).collect(Collectors.toList());
-        System.out.println("Filtered List: " + filtered);
-
-        mergedString = strings.stream().filter(string ->!string.isEmpty()).collect(Collectors.joining(", "));
-        System.out.println("Merged String: " + mergedString);
-
-        squaresList = numbers.stream().map( i ->i*i).distinct().collect(Collectors.toList());
-        System.out.println("Squares List: " + squaresList);
-        System.out.println("List: " +integers);
-
-        IntSummaryStatistics stats = integers.stream().mapToInt((x) ->x).summaryStatistics();
-
-        System.out.println("Highest number in List : " + stats.getMax());
-        System.out.println("Lowest number in List : " + stats.getMin());
-        System.out.println("Sum of all numbers : " + stats.getSum());
-        System.out.println("Average of all numbers : " + stats.getAverage());
-        System.out.println("Random Numbers: ");
-
-        random.ints().limit(10).sorted().forEach(System.out::println);
-
-        //parallel processing
-        count = strings.parallelStream().filter(string -> string.isEmpty()).count();
-        System.out.println("Empty Strings: " + count);
+//        count = strings.stream().filter(string->string.isEmpty()).count();
+//        System.out.println("Empty Strings: " + count);
+//
+//        count = strings.stream().filter(string -> string.length() == 3).count();
+//        System.out.println("Strings of length 3: " + count);
+//
+//        filtered = strings.stream().filter(string ->!string.isEmpty()).collect(Collectors.toList());
+//        System.out.println("Filtered List: " + filtered);
+//
+//        mergedString = strings.stream().filter(string ->!string.isEmpty()).collect(Collectors.joining(", "));
+//        System.out.println("Merged String: " + mergedString);
+//
+//        squaresList = numbers.stream().map( i ->i*i).distinct().collect(Collectors.toList());
+//        System.out.println("Squares List: " + squaresList);
+//        System.out.println("List: " +integers);
+//
+//        IntSummaryStatistics stats = integers.stream().mapToInt((x) ->x).summaryStatistics();
+//
+//        System.out.println("Highest number in List : " + stats.getMax());
+//        System.out.println("Lowest number in List : " + stats.getMin());
+//        System.out.println("Sum of all numbers : " + stats.getSum());
+//        System.out.println("Average of all numbers : " + stats.getAverage());
+//        System.out.println("Random Numbers: ");
+//
+//        random.ints().limit(10).sorted().forEach(System.out::println);
+//
+//        //parallel processing
+//        count = strings.parallelStream().filter(string -> string.isEmpty()).count();
+//        System.out.println("Empty Strings: " + count);
     }
 
     private static int getCountEmptyStringUsingJava7(List<String> strings){
