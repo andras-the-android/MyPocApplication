@@ -2,23 +2,19 @@ package com.example.andras.myapplication.sniplets.simplespinner;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.graphics.drawable.BitmapDrawable;
+import android.content.res.TypedArray;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v4.widget.PopupWindowCompat;
-import android.support.v7.internal.widget.ListViewCompat;
+import android.support.v7.widget.ListPopupWindow;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.PopupWindow;
 
 import com.example.andras.myapplication.R;
 
@@ -28,15 +24,14 @@ import com.example.andras.myapplication.R;
 public class SimpleSpinner extends LinearLayout {
 
     private BaseAdapter adapter;
-    private ListView listView;
-    private PopupWindow popupWindow;
+    private ListPopupWindow popupWindow;
     private FrameLayout container;
     private View spinnerContent;
-    int selectedPosition;
+    private int selectedPosition;
     @Nullable
     private AdapterView.OnItemSelectedListener selectionListener;
     private View view;
-
+    private Handler handler = new Handler();
 
     public SimpleSpinner(Context context) {
         super(context);
@@ -69,18 +64,13 @@ public class SimpleSpinner extends LinearLayout {
             }
         });
 
-        popupWindow = new PopupWindow(this);
-        listView = new ListViewCompat(context);
-        listView.setOnItemClickListener(new OnItemClickListener());
-        popupWindow.setFocusable(true);
+        popupWindow = new ListPopupWindow(context);
+        popupWindow.setModal(true);
+        popupWindow.setAnchorView(view);
+        popupWindow.setOnItemClickListener(new OnItemClickListener());
         popupWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            popupWindow.setElevation(10);
-            listView.setElevation(10);
-        }
-        popupWindow.setContentView(listView);
 
-        handleOutsideTouch();
+
     }
 
     @Override
@@ -89,35 +79,20 @@ public class SimpleSpinner extends LinearLayout {
         popupWindow.setWidth(view.getWidth());
     }
 
-    /**
-     * Closes the popup on outside touch below lollipop
-     */
-    private void handleOutsideTouch() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            popupWindow.setOutsideTouchable(true);
-            popupWindow.setTouchable(true);
-            popupWindow.setBackgroundDrawable(new BitmapDrawable());
-            popupWindow.setTouchInterceptor(new OnTouchListener() {
-
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    if ((event.getActionMasked() & MotionEvent.ACTION_OUTSIDE) != 0) {
-                        popupWindow.dismiss();
-                        return true;
-                    }
-                    return false;
-                }
-            });
-        }
+    private int getThemeBackgroundColor(Context context) {
+        TypedArray array = context.getTheme().obtainStyledAttributes(new int[]{android.R.attr.colorBackground});
+        int backgroundColor = array.getColor(0, 0xFFFFFF);
+        array.recycle();
+        return backgroundColor;
     }
 
-    public void setAdapter(BaseAdapter adapter) {
-        setAdapter(adapter, 0);
+    public BaseAdapter getAdapter() {
+        return adapter;
     }
 
     public void setAdapter(BaseAdapter adapter, int position) {
         this.adapter = adapter;
-        listView.setAdapter(adapter);
+        popupWindow.setAdapter(adapter);
         setSelection(position);
     }
 
@@ -125,16 +100,22 @@ public class SimpleSpinner extends LinearLayout {
      * Jump directly to a specific item in the adapter data.
      */
     public void setSelection(int position) {
-        setSelection(listView, null, position, adapter.getItemId(position));
+        setSelection(popupWindow.getListView(), null, position, adapter.getItemId(position));
     }
 
-    private void setSelection(AdapterView<?> parent, View view, int position, long id) {
+    private void setSelection(final AdapterView<?> parent, final View view, final int position, final long id) {
         spinnerContent = adapter.getView(position, spinnerContent, container);
         container.removeAllViews();
         container.addView(spinnerContent);
         selectedPosition = position;
         if (selectionListener != null) {
-            selectionListener.onItemSelected(parent, view, position, id);
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    selectionListener.onItemSelected(parent, view, position, id);
+                }
+            });
+
         }
     }
 
@@ -149,7 +130,7 @@ public class SimpleSpinner extends LinearLayout {
     }
 
     private void onSpinnerClick(View view) {
-        PopupWindowCompat.showAsDropDown(popupWindow, view, -5, 0, Gravity.RIGHT);
+        popupWindow.show();
     }
 
     private class OnItemClickListener implements AdapterView.OnItemClickListener {

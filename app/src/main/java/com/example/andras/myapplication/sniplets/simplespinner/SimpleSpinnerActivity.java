@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.andras.myapplication.R;
 
@@ -15,7 +16,7 @@ public class SimpleSpinnerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple_spinner);
         SimpleSpinner simpleSpinner = (SimpleSpinner) findViewById(R.id.spinner);
-        simpleSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, new String[]{"First","Second", "Third"}), 2);
+        simpleSpinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, new String[]{"First","Second", "Third", "Third", "Third", "Third", "Third", "Third", "Third", "Third", "Third", "Third", "Third", "Third", "Third", "Third"}), 2);
         simpleSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -29,9 +30,7 @@ public class SimpleSpinnerActivity extends AppCompatActivity {
         });
 
 
-//        Spinner spinner = new Spinner(this);
-//
-//        spinner.setSelection();
-//        spinner.setOnItemSelectedListener();
+        Spinner spinner = (Spinner) findViewById(R.id.spinner2);
+        spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, android.R.id.text1, new String[]{"First","Second", "Third", "Third", "Third", "Third", "Third", "Third", "Third", "Third", "Third", "Third", "Third", "Third", "Third", "Third"}));
     }
 }
