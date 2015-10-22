@@ -1,10 +1,10 @@
 package com.example.andras.myapplication;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.MotionEventCompat;
 import android.support.v4.view.VelocityTrackerCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,7 +18,7 @@ import com.example.andras.myapplication.googlesamples.logger.LogFragment;
 import com.example.andras.myapplication.googlesamples.logger.LogWrapper;
 import com.example.andras.myapplication.googlesamples.logger.MessageOnlyLogFilter;
 
-public class GesturesActivity extends Activity {
+public class GesturesActivity extends AppCompatActivity {
 
     private View gestureView;
     private VelocityTracker mVelocityTracker = null;
