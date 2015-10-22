@@ -61,6 +61,7 @@ dependencies {
     compile 'com.android.support:design:23.0.1'
     compile 'com.jakewharton:butterknife:6.1.0'
     compile 'com.annimon:stream:1.0.1'
+    compile 'com.google.maps.android:android-maps-utils:0.4'
 }
 
 //in theory only when JAVA_HOME doesn't point to java 8 jdk
