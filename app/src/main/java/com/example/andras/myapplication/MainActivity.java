@@ -1,14 +1,14 @@
 package com.example.andras.myapplication;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.andras.myapplication.material.MaterialTestActivity;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
