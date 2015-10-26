@@ -48,4 +48,8 @@ public class MainActivity extends AppCompatActivity {
     public void onGesturesButtonClick(View view) {
         startActivity(new Intent(this, GesturesActivity.class));
     }
+
+    public void onCameraButtonClick(View view) {
+        startActivity(new Intent(this, CameraActivity.class));
+    }
 }

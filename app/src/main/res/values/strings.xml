@@ -20,6 +20,7 @@
     <string name="title_activity_location">LocationActivity</string>
     <string name="title_activity_material_test">MaterialTestActivity</string>
     <string name="title_activity_gestures">GesturesActivity</string>
+    <string name="title_activity_camera">Camera</string>
     <string name="gestures_intro_message">
         <![CDATA[
 
