@@ -114,10 +114,12 @@ public class MapsActivity extends AppCompatActivity {
 
         //Markers
         IconGenerator iconGenerator = new IconGenerator(this);
-        //iconGenerator.setBackground(ContextCompat.getDrawable(this, R.drawable.ic_launcher));
-        iconGenerator.setStyle(IconGenerator.STYLE_RED);
-        Bitmap bmp = iconGenerator.makeIcon("66");
+        iconGenerator.setBackground(ContextCompat.getDrawable(this, R.drawable.orszag_cluster));
+        //iconGenerator.setStyle(IconGenerator.STYLE_RED);
+        iconGenerator.setTextAppearance(R.style.mapMarkerIconText);
+        Bitmap bmp = iconGenerator.makeIcon("66666");
         marker.setIcon(BitmapDescriptorFactory.fromBitmap(bmp));
+        //marker.setIcon(BitmapDescriptorFactory.fromResource(R.drawable.mentve_pin2));
     }
 
     private class MyMapReadyCallback implements OnMapReadyCallback {
