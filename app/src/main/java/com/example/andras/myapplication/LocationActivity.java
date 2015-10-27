@@ -4,32 +4,61 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.andras.myapplication.googlesamples.GoogleFusedLocationExampleActivity;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
-import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 
-public class LocationActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class LocationActivity extends AppCompatActivity {
 
     private static final int REQUEST_CHECK_SETTINGS = 666;
-    private GoogleApiClient mGoogleApiClient;
+    private GoogleApiClient googleApiClient;
     private TextView twStatus;
     private TextView twLatitude;
     private TextView twLongitude;
+    private LocationRequest locationReq;
+
+    private GoogleApiClient.ConnectionCallbacks apiClientConnectionCallbacks = new GoogleApiClient.ConnectionCallbacks() {
+        @Override
+        public void onConnected(Bundle bundle) {
+            sendStatus("Connected");
+            //we don't wait for the dialog result, but we can put this invocation tho the
+            //settings result callback and we can wait/use location only when the user granted
+            onLocationRequestFinished();
+        }
+
+        @Override
+        public void onConnectionSuspended(int i) {
+            sendStatus("Suspended: " + i);
+        }
+    };
+
+//    private GoogleApiClient.OnConnectionFailedListener apiClientConnectionFailedListener = new GoogleApiClient.OnConnectionFailedListener() {
+//        @Override
+//        public void onConnectionFailed(ConnectionResult connectionResult) {
+//            sendStatus("Failed: " + connectionResult);
+//        }
+//    };
+
+    private LocationListener locationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(Location location) {
+            onLocationObtained(location);
+            LocationServices.FusedLocationApi.removeLocationUpdates(googleApiClient, this);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,167 +71,108 @@ public class LocationActivity extends AppCompatActivity implements GoogleApiClie
         buildGoogleApiClient();
     }
 
-    private void requestTurnOnLocation() {
-        LocationRequest locationRequest = new LocationRequest();
-        locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setInterval(5000);
-        new LocationSettingsRequest.Builder().addLocationRequest(locationRequest).build();
-    }
 
     protected synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
+        googleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(apiClientConnectionCallbacks)
+//                .addOnConnectionFailedListener(apiClientConnectionFailedListener)
                 .addApi(LocationServices.API)
                 .build();
 
-        twStatus.setText("Started");
+        sendStatus("Started");
 
-        //use this for only one location data (this may deliver null when no location available)
-        //mGoogleApiClient.connect();
-        doRun();
+        googleApiClient.connect();
+        requestTurnOnLocation();
 
     }
 
-    public void doRun(){
-        final LocationRequest locationReq=LocationRequest.create().setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY).setFastestInterval(3000).setInterval(5000);
+    public void requestTurnOnLocation(){
+        locationReq = LocationRequest.create()
+                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                .setFastestInterval(3000)
+                .setInterval(5000);
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(locationReq);
-        PendingResult<LocationSettingsResult> result=LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient,builder.build());
+        PendingResult<LocationSettingsResult> result=LocationServices.SettingsApi.checkLocationSettings(googleApiClient, builder.build());
         result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
-                                     @Override
-                                     public void onResult(LocationSettingsResult callback) {
-                                         final Status status = callback.getStatus();
-                                         switch (status.getStatusCode()) {
-                                             case LocationSettingsStatusCodes.SUCCESS:
-                                                 //LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, locationReq, GoogleMapFragment.this);
-                                                 onConnected(null);
-                                                 break;
-                                             case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                                                 try {
-                                                     status.startResolutionForResult(LocationActivity.this, REQUEST_CHECK_SETTINGS);
-                                                 } catch (IntentSender.SendIntentException e) {
-                                                     Log.e("", e.getMessage(), e);
-                                                 }
-                                                 break;
-                                             case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-                                                 Log.w("", "Unable to get accurate user location.");
-                                                 Toast.makeText(LocationActivity.this, "Unable to get accurate location. Please update your " + "location settings!", Toast.LENGTH_LONG).show();
-                                                 break;
-                                         }
-                                     }
-                                 }
-
-        );
+            @Override
+            public void onResult(LocationSettingsResult callback) {
+                onLocationStateCheckResult(callback);
+            }
+        });
     }
 
-
-    @Override
-    public void onConnected(Bundle bundle) {
-        Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                mGoogleApiClient);
-        if (lastLocation != null) {
-            twLatitude.setText(String.valueOf(lastLocation.getLatitude()));
-            twLongitude.setText(String.valueOf(lastLocation.getLongitude()));
-        } else {
-            twStatus.setText("Connected but last location is null");
+    private void onLocationStateCheckResult(LocationSettingsResult callback) {
+        final Status status = callback.getStatus();
+        switch (status.getStatusCode()) {
+            //location already available - nothing to do
+            case LocationSettingsStatusCodes.SUCCESS:
+                sendStatus("Location is already turned on");
+                break;
+            //location turned off throw the dialog
+            case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+                try {
+                    status.startResolutionForResult(LocationActivity.this, REQUEST_CHECK_SETTINGS);
+                } catch (IntentSender.SendIntentException e) {
+                    Log.e("", e.getMessage(), e);
+                }
+                break;
+            //the user have chosen the the never button earlier, but if the location is turned on, we can use it
+            case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                Log.w("", "Unable to get accurate user location.");
+                sendStatus("User have chosen the never button earlier");
+                break;
         }
-        twStatus.setText("Connected");
+    }
+
+
+    public void onLocationRequestFinished() {
+        Location lastLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+        if (lastLocation != null) {
+            onLocationObtained(lastLocation);
+        } else {
+            sendStatus("Location is not available but requested");
+            LocationServices.FusedLocationApi.requestLocationUpdates(googleApiClient, locationReq, locationListener);
+        }
+
+    }
+
+    private void onLocationObtained(Location location) {
+        twLatitude.setText(String.valueOf(location.getLatitude()));
+        twLongitude.setText(String.valueOf(location.getLongitude()));
+        sendStatus("Location obtained");
     }
 
     @Override
-    public void onConnectionSuspended(int i) {
-        twStatus.setText("Suspended: " + i);
+    protected void onStart() {
+        super.onStart();
+        googleApiClient.connect();
     }
 
     @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        twStatus.setText("Failed: " + connectionResult);
+    protected void onStop() {
+        googleApiClient.disconnect();
+        super.onStop();
     }
 
     public void showGoogleExample(View view) {
         startActivity(new Intent(this, GoogleFusedLocationExampleActivity.class));
     }
 
-    //*****************************************************************************
-
-//    private void adesfswefvc() {
-//        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
-//                .addLocationRequest(mLocationRequest);
-//        builder.setAlwaysShow(true);
-//
-//        PendingResult<LocationSettingsResult> result = LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, builder.build());
-//
-//        result.setResultCallback(new ResultCallback<LocationSettingsResult>()
-//        {
-//            @Override
-//            public void onResult(LocationSettingsResult result)
-//            {
-//                final Status status = result.getStatus();
-//                final LocationSettingsStates locationSettingsStates = result.getLocationSettingsStates();
-//                switch (status.getStatusCode())
-//                {
-//                    case LocationSettingsStatusCodes.SUCCESS:
-//                        // All location settings are satisfied. The client can initialize location
-//                        // requests here.
-//                        ...
-//                        Log.d("onResult", "SUCCESS");
-//                        break;
-//                    case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-//                        // Location settings are not satisfied. But could be fixed by showing the user
-//                        // a dialog.
-//                        Log.d("onResult", "RESOLUTION_REQUIRED");
-//                        try
-//                        {
-//                            // Show the dialog by calling startResolutionForResult(),
-//                            // and check the result in onActivityResult().
-//                            status.startResolutionForResult(OuterClass.this, REQUEST_LOCATION);
-//                        }
-//                        catch (IntentSender.SendIntentException e)
-//                        {
-//                            // Ignore the error.
-//                        }
-//                        break;
-//                    case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
-//                        // Location settings are not satisfied. However, we have no way to fix the
-//                        // settings so we won't show the dialog.
-//                        ...
-//                        Log.d("onResult", "UNAVAILABLE");
-//                        break;
-//                }
-//            }
-//        });
-//    }
-//
-//
-//
+    //we can handle the result of the dialog here but more practical to request for location updates anyways
 //    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data)
-//    {
-//        // This log is never called
-//        Log.d("onActivityResult()", Integer.toString(resultCode));
-//
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        final LocationSettingsStates states = LocationSettingsStates.fromIntent(data);
-//        switch (requestCode)
-//        {
-//            case REQUEST_LOCATION:
-//                switch (resultCode)
-//                {
-//                    case Activity.RESULT_OK:
-//                    {
-//                        // All required changes were successfully made
-//                        break;
-//                    }
-//                    case Activity.RESULT_CANCELED:
-//                    {
-//                        // The user was asked to change settings, but chose not to
-//                        break;
-//                    }
-//                    default:
-//                    {
-//                        break;
-//                    }
-//                }
-//                break;
+//        if (requestCode == REQUEST_CHECK_SETTINGS) {
+//            if (resultCode == Activity.RESULT_OK) {
+//                onLocationRequestFinished();
+//            } else {
+//                sendStatus("Location request denied");
+//            }
 //        }
 //    }
+
+    private void sendStatus(String message) {
+        twStatus.setText(message);
+    }
+
 }
