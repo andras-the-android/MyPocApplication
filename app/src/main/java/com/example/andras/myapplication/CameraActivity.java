@@ -3,6 +3,7 @@ package com.example.andras.myapplication;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -67,20 +68,25 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Bitmap is really a bitmap so be careful because yue can run into OutOfMemoryException on devices with high res camera and little memory
+     */
     private void processImage() {
         //setImageFromResult(data);
         checkExifData();
-        Bitmap bitmap = resizeImage();
-        //Bitmap bitmap = BitmapFactory.decodeFile(fileNameUri.getPath());
+        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+        Bitmap bitmap = BitmapFactory.decodeFile(fileNameUri.getPath(), bmOptions);
+        bitmap = resizeImage(bitmap, bmOptions);
+        bitmap = rotateImageByExif(bitmap);
         saveImage(bitmap, fileNameUri.getPath());
+
         imageView.setImageBitmap(bitmap);
         checkExifData();
     }
 
     private void checkExifData()  {
-        ExifInterface exif = null;
         try {
-            exif = new ExifInterface(fileNameUri.getPath());
+            ExifInterface exif = new ExifInterface(fileNameUri.getPath());
             Log.d(TAG, "xxx orientation " + exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED) +
                     " size: " + exif.getAttributeInt(ExifInterface.TAG_IMAGE_WIDTH, -1) +
                     "*" + exif.getAttributeInt(ExifInterface.TAG_IMAGE_LENGTH, -1));
@@ -89,14 +95,37 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-    private Bitmap resizeImage() {
-        // Get the dimensions of the bitmap
-        BitmapFactory.Options bmOptions = new BitmapFactory.Options();
-        Bitmap originalBitmap = BitmapFactory.decodeFile(fileNameUri.getPath(), bmOptions);
-        int imageWidth = bmOptions.outWidth;
-        int imageHeight = bmOptions.outHeight;
+    private Bitmap resizeImage(Bitmap source, BitmapFactory.Options bitmapOptions) {
+        int imageWidth = bitmapOptions.outWidth;
+        int imageHeight = bitmapOptions.outHeight;
         float scaleFactor = Math.min(TARGET_IMAGE_WIDTH/imageWidth, TARGET_IMAGE_HEIGHT/imageHeight);
-        return Bitmap.createScaledBitmap(originalBitmap, (int)(imageWidth * scaleFactor), (int)(imageHeight * scaleFactor), true);
+        if (scaleFactor >= 1) {
+            return source;
+        }
+        return Bitmap.createScaledBitmap(source, (int)(imageWidth * scaleFactor), (int)(imageHeight * scaleFactor), true);
+    }
+
+    private Bitmap rotateImageByExif(Bitmap source) {
+        try {
+            ExifInterface exif = new ExifInterface(fileNameUri.getPath());
+            int exifOrientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+            int rotationAngle = 0;
+            switch (exifOrientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90 : rotationAngle = 90; break;
+                case ExifInterface.ORIENTATION_ROTATE_180 : rotationAngle = 180; break;
+                case ExifInterface.ORIENTATION_ROTATE_270 : rotationAngle = 270; break;
+            }
+            if (rotationAngle != 0) {
+                Matrix matrix = new Matrix();
+                matrix.preRotate(rotationAngle);
+                return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+            } else {
+                return source;
+            }
+        } catch (IOException e) {
+            Log.e(TAG, e.getMessage(), e);
+        }
+        return null;
     }
 
     //from google
