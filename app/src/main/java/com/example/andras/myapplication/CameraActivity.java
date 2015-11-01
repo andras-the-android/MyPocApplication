@@ -118,6 +118,7 @@ public class CameraActivity extends AppCompatActivity {
             if (rotationAngle != 0) {
                 Matrix matrix = new Matrix();
                 matrix.preRotate(rotationAngle);
+                //Note: This width/heigth parameters don't scale but crop
                 return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
             } else {
                 return source;
