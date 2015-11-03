@@ -6,7 +6,7 @@ android {
     buildToolsVersion "23.0.0"
 
     defaultConfig {
-        applicationId "com.example.andras.mypocapplication"
+        applicationId "hu.andras.mypocapplication"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
