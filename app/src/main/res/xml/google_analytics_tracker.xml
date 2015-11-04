@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Enable automatic Activity measurement -->
+    <string name="ga_trackingId">UA-69644747-1</string>
     <bool name="ga_autoActivityTracking">true</bool>
+    <bool name="ga_reportUncaughtExceptions">true</bool>
 
     <!-- The screen names that will appear in reports -->
     <screenName name="com.example.andras.myapplication.MainActivity">Főképernyő</screenName>
