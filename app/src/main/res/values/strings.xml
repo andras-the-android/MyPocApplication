@@ -31,5 +31,6 @@
 
         ]]>
     </string>
+    <string name="mandatory_field">This field is mandatory</string>
 
 </resources>
