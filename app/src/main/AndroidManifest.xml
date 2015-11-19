@@ -94,6 +94,11 @@
             android:theme="@style/AppBaseThemeNoActionBar" >
         </activity>
         <activity
+            android:name=".material.CollapsibleToolbarActivity"
+            android:label="@string/title_activity_material_test"
+            android:theme="@style/AppBaseThemeNoActionBar" >
+        </activity>
+        <activity
             android:name=".GesturesActivity"
             android:label="@string/title_activity_gestures"
             android:parentActivityName=".MainActivity">
@@ -104,6 +109,10 @@
         <activity
             android:name=".CameraActivity"
             android:label="@string/title_activity_camera">
+        </activity>
+        <activity
+            android:name=".ormlite.OrmLiteActivity"
+            android:label="@string/title_activity_ormlite">
         </activity>
     </application>
 

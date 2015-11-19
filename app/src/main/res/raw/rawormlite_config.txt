@@ -1,0 +1,27 @@
+#
+# generated on 2015/11/10 07:25:22
+#
+# --table-start--
+dataClass=com.example.andras.myapplication.ormlite.SimpleData
+tableName=simpledata
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=string
+indexName=simpledata_string_idx
+# --field-end--
+# --field-start--
+fieldName=millis
+# --field-end--
+# --field-start--
+fieldName=date
+# --field-end--
+# --field-start--
+fieldName=even
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
