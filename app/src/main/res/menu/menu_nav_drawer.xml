@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/nav_drawer_recycleview" android:title="Recycle View"/>
-    <item android:id="@+id/nav_drawer_other" android:title="Other"/>
+    <item android:id="@+id/nav_drawer_collapsible" android:title="Collapsible toolbar"/>
 
 </menu>

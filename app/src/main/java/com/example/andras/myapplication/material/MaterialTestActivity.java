@@ -1,6 +1,7 @@
 package com.example.andras.myapplication.material;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
@@ -101,10 +102,13 @@ public class MaterialTestActivity extends AppCompatActivity {
     }
 
     private void swichView(int resId) {
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.framelayout, getFragmentById(resId))
-                .commit();
+        Fragment fragment = getFragmentById(resId);
+        if (fragment != null) {
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.framelayout, fragment)
+                    .commit();
+        }
     }
 
     @Override
@@ -144,8 +148,8 @@ public class MaterialTestActivity extends AppCompatActivity {
     private Fragment getFragmentById(int resId) {
         switch (resId) {
             case R.id.nav_drawer_recycleview : return new RecyclerViewFragment();
-            case R.id.nav_drawer_other : return new RecyclerViewFragment();
-            default: return new RecyclerViewFragment();
+            case R.id.nav_drawer_collapsible : startActivity(new Intent(this, CollapsibleToolbarActivity.class));
+            default: return null;
         }
     }
 }

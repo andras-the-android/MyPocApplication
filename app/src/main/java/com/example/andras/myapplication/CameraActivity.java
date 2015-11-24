@@ -206,7 +206,4 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-    private void sendStatus(String message) {
-        twStatus.setText(message);
-    }
 }
