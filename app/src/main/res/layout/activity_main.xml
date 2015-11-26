@@ -75,6 +75,12 @@
                 android:text="Camera"
                 android:onClick="onCameraButtonClick"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Orm lite"
+                android:onClick="onOrmLiteButtonClick"/>
+
 
         </LinearLayout>
 

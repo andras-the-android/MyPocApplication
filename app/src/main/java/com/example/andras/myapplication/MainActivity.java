@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.andras.myapplication.material.MaterialTestActivity;
+import com.example.andras.myapplication.ormlite.OrmLiteActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -51,5 +52,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void onCameraButtonClick(View view) {
         startActivity(new Intent(this, CameraActivity.class));
+    }
+
+    public void onOrmLiteButtonClick(View view) {
+        startActivity(new Intent(this, OrmLiteActivity.class));
     }
 }
