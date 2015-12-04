@@ -1,4 +1,4 @@
-package com.example.andras.myapplication;
+package com.example.andras.myapplication.java8;
 
 import android.util.Log;
 
@@ -36,11 +36,15 @@ public class RetrolambdaTest {
                 Log.d(TAG, "Hello " + message);
 
         //without parenthesis
-        GreetingService greetService2 = (message) ->
-                Log.d(TAG, "Hello " + message);
+        GreetingService greetService2 = this::sayMessageByReference;
+
 
         greetService1.sayMessage("Mahesh");
         greetService2.sayMessage("Suresh");
+    }
+
+    private void sayMessageByReference(String message) {
+        Log.d(TAG, "Hello " + message);
     }
 
     interface MathOperation {

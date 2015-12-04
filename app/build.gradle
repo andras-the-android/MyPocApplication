@@ -68,6 +68,7 @@ dependencies {
     compile 'com.j256.ormlite:ormlite-android:4.48'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.guava:guava:18.0'
+    compile 'com.annimon:stream:1.0.5'
 
 }
 

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.example.andras.myapplication.java8.GuavaOptionalTest;
+import com.example.andras.myapplication.java8.RetrolambdaTest;
 import com.example.andras.myapplication.material.MaterialTestActivity;
 import com.example.andras.myapplication.ormlite.OrmLiteActivity;
 
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         new RetrolambdaTest();
+        new GuavaOptionalTest();
     }
 
     public void onDragNDropButtonClick(View view) {
