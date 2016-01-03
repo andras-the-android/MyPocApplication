@@ -1,16 +1,24 @@
 package com.example.andras.myapplication;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.AndroidCharacter;
+import android.util.*;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.andras.myapplication.sniplets.MapUtils;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
@@ -26,16 +34,17 @@ import com.google.maps.android.ui.IconGenerator;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 
 public class MapsActivity extends AppCompatActivity {
 
-
+    private static final String TAG = "MapsActivity";
     private MapFragment mapFragment;
 
-    @InjectView(R.id.detail)
-    View detailView;
     @InjectView(R.id.map_layout)
     LinearLayout layout;
+    public static final int PLACE_PICKER_REQUEST = 1;
+    private GoogleMap map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +95,7 @@ public class MapsActivity extends AppCompatActivity {
      * <p/>
      */
     private void setUpMap() {
-        GoogleMap map = mapFragment.getMap();
+        map = mapFragment.getMap();
         LatLng latLng = new LatLng(47.485447d, 19.070975d);
         Marker marker = map.addMarker(new MarkerOptions().position(latLng).title("Marker"));
         map.setIndoorEnabled(false);
@@ -131,7 +140,42 @@ public class MapsActivity extends AppCompatActivity {
         }
     }
 
-    private void doAutoFit() {
-
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                handlePlacePickerResult(data);
+            }
+        }
     }
+
+
+    @OnClick(R.id.button)
+    public void onLabelClick(View view) {
+        openGooglePlacePicker();
+    }
+
+    /**
+     * This demands an api key and "Google places api for Android" enabled.
+     */
+    private void openGooglePlacePicker() {
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+        try {
+            startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
+        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+            android.util.Log.e(TAG, e.getMessage(), e);
+        }
+    }
+
+    private void handlePlacePickerResult(Intent data) {
+        if (map != null) {
+            Place place = PlacePicker.getPlace(this, data);
+            String titleMsg = String.format("Place: %s", place.getName());
+            Toast.makeText(this, titleMsg, Toast.LENGTH_LONG).show();
+            LatLng latLng = place.getLatLng();
+            MapUtils.zoomToLocation(map, MapUtils.convertToGoogleLocation(latLng.latitude, latLng.longitude));
+            map.addMarker(new MarkerOptions().position(latLng).title(titleMsg));
+        }
+    }
+
 }
