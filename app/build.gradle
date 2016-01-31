@@ -75,7 +75,7 @@ dependencies {
 //in theory only when JAVA_HOME doesn't point to java 8 jdk
 //in pratice this is a must
 retrolambda {
-    jdk System.getenv("JAVA8_HOME")
+    //jdk System.getenv("JAVA8_HOME")
 //    println("***************** ---------- *******************")
 //    println("JAVA_HOME: " + System.getenv("JAVA_HOME"))
 //    println("JAVA7_HOME: " + System.getenv("JAVA7_HOME"))
