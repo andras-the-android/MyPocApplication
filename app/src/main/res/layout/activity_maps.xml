@@ -3,15 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="1"
     >
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:id="@+id/text_view"
-        android:text="Other content"/>
+        android:id="@+id/text_view"/>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -21,13 +19,10 @@
         tools:context="com.example.andras.myapplication.MapsActivity"
         android:layout_weight="1"/>
 
-    <!--ne használj sima View-t mert nem működik a weightSum! -->
-    <RelativeLayout
-        android:id="@+id/detail"
+    <Button
+        android:id="@+id/button"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@android:color/holo_red_dark"
-        />
+        android:layout_height="wrap_content"
+        android:text="Place picker"/>
 
 </LinearLayout>
