@@ -14,8 +14,9 @@ public class StreamTest {
     private static final String TAG = "StreamTest";
 
     public static void main(String[] args) {
-        //[5, 6, 5, 4]
         List<String> sourceList = Arrays.asList("first", "second", "third", "last");
+
+        //[5, 6, 5, 4]
         List<Integer> result1 = Stream.of(sourceList)
                 .map(item -> item.length())
                 .collect(Collectors.toList());
@@ -24,7 +25,16 @@ public class StreamTest {
         String result2 = Stream.of(sourceList)
                 .reduce((acc, item) -> acc + "_" + item).get();
 
-        System.out.println(result2);
+        //[1, 2, 3, 4, 5]
+        List<Integer> result3 = Stream.of(
+                Arrays.asList(1, 2),
+                Arrays.asList(3, 4),
+                Arrays.asList(5)
+        )
+                .flatMap(sublist -> Stream.of(sublist))
+                .collect(Collectors.toList());
+
+        System.out.println(result3);
 
     }
 }
