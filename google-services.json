@@ -1,1 +1,54 @@
-{"project_info":{"project_id":"mypocapplication","project_number":"222394048511","name":"MyPocApplication"},"client":[{"client_info":{"mobilesdk_app_id":"1:222394048511:android:0bed729a81b75f27","client_id":"android:hu.andras.mypocapplicatiob","client_type":1,"android_client_info":{"package_name":"hu.andras.mypocapplicatiob"}},"oauth_client":[],"api_key":[],"services":{"analytics_service":{"status":2,"analytics_property":{"tracking_id":"UA-69644747-1"}},"cloud_messaging_service":{"status":1,"apns_config":[]},"appinvite_service":{"status":1,"other_platform_oauth_client":[]},"google_signin_service":{"status":1},"ads_service":{"status":1}}}],"client_info":[],"ARTIFACT_VERSION":"1"}
+{
+  "project_info": {
+    "project_id": "mypocapplication",
+    "project_number": "222394048511",
+    "name": "MyPocApplication"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222394048511:android:0bed729a81b75f27",
+        "client_id": "android:hu.andras.mypocapplicatiob",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "hu.andras.mypocapplicatiob"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222394048511-h2ti7sfcl599ln2skjl4pd6i1ukkkhnu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "hu.andras.mypocapplicatiob",
+            "certificate_hash": "B1987CC8E0916A3AD8503D985F9B99E62CD5E27E"
+          }
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 2,
+          "analytics_property": {
+            "tracking_id": "UA-69644747-1"
+          }
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}

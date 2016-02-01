@@ -81,6 +81,12 @@
                 android:text="Orm lite"
                 android:onClick="onOrmLiteButtonClick"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign in"
+                android:onClick="onSignInButtonClick"/>
+
 
         </LinearLayout>
 
