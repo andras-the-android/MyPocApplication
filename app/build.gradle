@@ -72,6 +72,10 @@ dependencies {
 
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.10'
+}
+
 //in theory only when JAVA_HOME doesn't point to java 8 jdk
 //in pratice this is a must
 retrolambda {
