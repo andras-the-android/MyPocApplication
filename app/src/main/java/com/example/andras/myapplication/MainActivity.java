@@ -60,4 +60,8 @@ public class MainActivity extends AppCompatActivity {
     public void onOrmLiteButtonClick(View view) {
         startActivity(new Intent(this, OrmLiteActivity.class));
     }
+
+    public void onSignInButtonClick(View view) {
+        startActivity(new Intent(this, GoogleSignInActivity.class));
+    }
 }

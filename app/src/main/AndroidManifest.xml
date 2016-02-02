@@ -115,6 +115,10 @@
             android:name=".ormlite.OrmLiteActivity"
             android:label="@string/title_activity_ormlite">
         </activity>
+        <activity
+            android:name=".GoogleSignInActivity"
+            android:label="@string/title_activity_ormlite">
+        </activity>
     </application>
 
 </manifest>
