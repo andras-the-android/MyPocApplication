@@ -21,7 +21,7 @@ import butterknife.OnClick;
 /**
  * Created by andrasnemeth on 1/30/16.
  */
-public class GoogleSignInActivity extends AppCompatActivity {
+public class  GoogleSignInActivity extends AppCompatActivity {
 
     private static final String TAG = "GoogleSignInActivity";
 
@@ -73,7 +73,7 @@ public class GoogleSignInActivity extends AppCompatActivity {
     }
 
     private void handleSignInResult(GoogleSignInResult result) {
-        Log.d(TAG, "handleSignInResult:" + result.isSuccess());
+        Log.d(TAG, "handleSignInResult: success" + result.isSuccess());
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();

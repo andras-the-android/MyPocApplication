@@ -73,6 +73,9 @@ dependencies {
 
 }
 
+//this line has to be placed after the dependency declarations
+apply plugin: 'com.google.gms.google-services'
+
 task wrapper(type: Wrapper) {
     gradleVersion = '2.10'
 }
@@ -87,4 +90,5 @@ retrolambda {
 //    println("JAVA8_HOME: " + System.getenv("JAVA8_HOME"))
 //    println("***************** ---------- *******************")
 }
+
 
