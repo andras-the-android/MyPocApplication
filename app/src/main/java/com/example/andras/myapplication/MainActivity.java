@@ -3,6 +3,7 @@ package com.example.andras.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.*;
 import android.view.View;
 
 import com.example.andras.myapplication.java8.GuavaOptionalTest;
@@ -13,12 +14,16 @@ import com.example.andras.myapplication.ormlite.OrmLiteActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         new RetrolambdaTest();
         new GuavaOptionalTest();
+        Log.d(TAG, "Gradle module test: " + getString(hu.andras.mypocapplication.module1.R.string.module_test_label)
+                + " and " + getString(R.string.flavor_test_label));
     }
 
     public void onDragNDropButtonClick(View view) {

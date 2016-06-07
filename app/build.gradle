@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.2'
+    buildToolsVersion '23.0.3'
 
     defaultConfig {
         applicationId "hu.andras.mypocapplication"
@@ -11,6 +11,26 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+    }
+
+    flavorDimensions "number", "letter"
+
+    productFlavors {
+        flavor1 {
+            dimension "number"
+        }
+
+        flavor2 {
+            dimension "number"
+        }
+
+        flavorA {
+            dimension "letter"
+        }
+
+        flavorB {
+            dimension "letter"
+        }
     }
 
     compileOptions {
@@ -70,6 +90,7 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.guava:guava:18.0'
     compile 'com.annimon:stream:1.0.5'
+    compile project(':modules:module1')
 
 }
 
