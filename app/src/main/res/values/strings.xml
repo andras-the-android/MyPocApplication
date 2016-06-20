@@ -33,5 +33,6 @@
         ]]>
     </string>
     <string name="mandatory_field">This field is mandatory</string>
+    <string name="data_binding_test">And this is a text from strings.xml</string>
 
 </resources>

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.*;
 import android.view.View;
 
+import com.example.andras.myapplication.databinding.DataBindingActivity;
 import com.example.andras.myapplication.java8.GuavaOptionalTest;
 import com.example.andras.myapplication.java8.RetrolambdaTest;
 import com.example.andras.myapplication.material.MaterialTestActivity;
@@ -68,5 +69,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void onSignInButtonClick(View view) {
         startActivity(new Intent(this, GoogleSignInActivity.class));
+    }
+
+    public void onDataBindingButtonClick(View view) {
+        startActivity(new Intent(this, DataBindingActivity.class));
     }
 }

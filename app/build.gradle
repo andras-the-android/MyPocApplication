@@ -1,3 +1,4 @@
+apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.android.application'
 
 android {
@@ -11,9 +12,10 @@ android {
         versionCode 1
         versionName "1.0"
 
-        jackOptions {
-            enabled true
-        }
+//  Jack currently incompatible with databinding. Comment back and remove retrolambda to use native labda expression
+//        jackOptions {
+//            enabled true
+//        }
     }
 
     compileOptions {
@@ -73,6 +75,10 @@ android {
 //            keyAlias System.getenv("alias")
 //            keyPassword System.getenv("pwd")
 //        }
+    }
+
+    dataBinding {
+        enabled = true
     }
 }
 

@@ -87,6 +87,12 @@
                 android:text="Sign in"
                 android:onClick="onSignInButtonClick"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data binding"
+                android:onClick="onDataBindingButtonClick"/>
+
 
         </LinearLayout>
 

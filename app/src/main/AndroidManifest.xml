@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.andras.myapplication" >
+    package="com.example.andras.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
@@ -14,15 +14,16 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
+        android:name=".MyPocApplication"
         android:allowBackup="true"
         android:icon="@drawable/telepules_cluster_big"
         android:label="@string/app_name"
-        android:theme="@style/AppBaseTheme"
-        android:name=".MyPocApplication">
-
+        android:theme="@style/AppBaseTheme">
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -33,7 +34,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:launchMode="singleInstance" >
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,32 +44,29 @@
         <activity
             android:name=".DragDropActivity"
             android:label="@string/title_activity_drag_drop"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.andras.myapplication.MainActivity" />
         </activity>
         <activity
             android:name=".NotificationActivity"
-            android:label="@string/title_activity_notification" >
-        </activity>
+            android:label="@string/title_activity_notification"></activity>
         <activity
             android:name=".ActionBarActivity"
             android:label="@string/title_activity_action_bar"
-            android:parentActivityName=".MainActivity" >
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".PropertyAnimationActivity"
             android:label="@string/title_activity_property_animation"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.andras.myapplication.MainActivity" />
         </activity>
-
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps" >
+            android:label="@string/title_activity_maps">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.andras.myapplication.MainActivity" />
@@ -76,7 +74,7 @@
         <activity
             android:name=".LocationActivity"
             android:label="@string/title_activity_location"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.andras.myapplication.MainActivity" />
@@ -84,7 +82,7 @@
         <activity
             android:name=".googlesamples.GoogleFusedLocationExampleActivity"
             android:label="GoogleFusedLocationExampleActivity"
-            android:parentActivityName=".MainActivity" >
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.andras.myapplication.LocationActivity" />
@@ -92,13 +90,11 @@
         <activity
             android:name=".material.MaterialTestActivity"
             android:label="@string/title_activity_material_test"
-            android:theme="@style/AppBaseThemeNoActionBar" >
-        </activity>
+            android:theme="@style/AppBaseThemeNoActionBar"></activity>
         <activity
             android:name=".material.CollapsibleToolbarActivity"
             android:label="@string/title_activity_material_test"
-            android:theme="@style/AppBaseThemeNoActionBar" >
-        </activity>
+            android:theme="@style/AppBaseThemeNoActionBar"></activity>
         <activity
             android:name=".GesturesActivity"
             android:label="@string/title_activity_gestures"
@@ -109,16 +105,14 @@
         </activity>
         <activity
             android:name=".CameraActivity"
-            android:label="@string/title_activity_camera">
-        </activity>
+            android:label="@string/title_activity_camera"></activity>
         <activity
             android:name=".ormlite.OrmLiteActivity"
-            android:label="@string/title_activity_ormlite">
-        </activity>
+            android:label="@string/title_activity_ormlite"></activity>
         <activity
             android:name=".GoogleSignInActivity"
-            android:label="@string/title_activity_ormlite">
-        </activity>
+            android:label="@string/title_activity_ormlite"></activity>
+        <activity android:name=".databinding.DataBindingActivity"></activity>
     </application>
 
 </manifest>
