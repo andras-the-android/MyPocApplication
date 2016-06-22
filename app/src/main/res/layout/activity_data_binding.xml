@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable name="model" type="com.example.andras.myapplication.databinding.DummyModel"/>
+        <variable name="switchable" type="com.example.andras.myapplication.databinding.Switchable"/>
     </data>
 
     <LinearLayout
@@ -27,6 +28,12 @@
             android:text="@{model.resource}"
             tools:text="Hello2"
             />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{switchable.label}"
+            android:onClick="@{(view) -> switchable.isOn() ? switchable.turnOff(model) : switchable.turnOn(model)}"/>
 
     </LinearLayout>
 </layout>
