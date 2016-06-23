@@ -20,6 +20,7 @@ public class DataBindingActivity extends AppCompatActivity {
         ActivityDataBindingBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_data_binding);
         binding.setModel(model);
         binding.setSwitchable(switchable);
+        binding.submitButton.setOnClickListener(view -> model.setText(binding.textView.getText().toString()));
     }
 
 
