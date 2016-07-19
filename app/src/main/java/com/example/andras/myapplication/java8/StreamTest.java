@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class StreamTest {
 
-    private static final String TAG = "StreamTest";
+    private static final String TAG = "StreamTest2";
 
     public static void main(String[] args) {
         List<String> sourceList = Arrays.asList("first", "second", "third", "last");
@@ -22,6 +22,7 @@ public class StreamTest {
                 .collect(Collectors.toList());
 
         //first_second_third_last
+        //note: on the first cycle acc is "first" and item is "second"
         String result2 = Stream.of(sourceList)
                 .reduce((acc, item) -> acc + "_" + item).get();
 
@@ -34,7 +35,7 @@ public class StreamTest {
                 .flatMap(sublist -> Stream.of(sublist))
                 .collect(Collectors.toList());
 
-        System.out.println(result3);
+        System.out.println(result2);
 
     }
 }

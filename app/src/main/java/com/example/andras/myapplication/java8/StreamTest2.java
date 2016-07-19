@@ -1,16 +1,20 @@
-package com.example.andras.myapplication;
+package com.example.andras.myapplication.java8;
+
+import com.annimon.stream.Collectors;
+import com.annimon.stream.Stream;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Random;
 
 /**
  * Created by Andras on 2015.09.27..
  */
-public class StreamTest {
+public class StreamTest2 {
 
-    public StreamTest() {
+    public StreamTest2() {
         System.out.println("Using Java 7: ");
 
         // Count empty strings
@@ -54,23 +58,23 @@ public class StreamTest {
         System.out.println("Using Java 8: ");
         System.out.println("List: " +strings);
 
-//        count = strings.stream().filter(string->string.isEmpty()).count();
-//        System.out.println("Empty Strings: " + count);
-//
-//        count = strings.stream().filter(string -> string.length() == 3).count();
-//        System.out.println("Strings of length 3: " + count);
-//
-//        filtered = strings.stream().filter(string ->!string.isEmpty()).collect(Collectors.toList());
-//        System.out.println("Filtered List: " + filtered);
-//
-//        mergedString = strings.stream().filter(string ->!string.isEmpty()).collect(Collectors.joining(", "));
-//        System.out.println("Merged String: " + mergedString);
-//
-//        squaresList = numbers.stream().map( i ->i*i).distinct().collect(Collectors.toList());
-//        System.out.println("Squares List: " + squaresList);
-//        System.out.println("List: " +integers);
-//
-//        IntSummaryStatistics stats = integers.stream().mapToInt((x) ->x).summaryStatistics();
+        count = Stream.of(strings).filter(string->string.isEmpty()).count();
+        System.out.println("Empty Strings: " + count);
+
+        count = Stream.of(strings).filter(string -> string.length() == 3).count();
+        System.out.println("Strings of length 3: " + count);
+
+        filtered = Stream.of(strings).filter(string ->!string.isEmpty()).collect(Collectors.toList());
+        System.out.println("Filtered List: " + filtered);
+
+        mergedString = Stream.of(strings).filter(string ->!string.isEmpty()).collect(Collectors.joining(", "));
+        System.out.println("Merged String: " + mergedString);
+
+        squaresList = Stream.of(numbers).map( i ->i*i).distinct().collect(Collectors.toList());
+        System.out.println("Squares List: " + squaresList);
+        System.out.println("List: " +integers);
+
+//        IntSummaryStatistics stats = Stream.of(integers).mapToInt((x) ->x).summaryStatistics();
 //
 //        System.out.println("Highest number in List : " + stats.getMax());
 //        System.out.println("Lowest number in List : " + stats.getMin());
