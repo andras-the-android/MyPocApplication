@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable name="model" type="com.example.andras.myapplication.databinding.DummyModel"/>
+        <variable name="switchable" type="com.example.andras.myapplication.databinding.Switchable"/>
     </data>
 
     <LinearLayout
@@ -27,6 +28,48 @@
             android:text="@{model.resource}"
             tools:text="Hello2"
             />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{switchable.label}"
+            android:onClick="@{(view) -> switchable.isOn() ? switchable.turnOff(model) : switchable.turnOn(model)}"/>
+
+        <LinearLayout
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/submitButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit"/>
+
+            <EditText
+                android:id="@+id/textView"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Two-way binding"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={model.anotherText}"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={model.anotherText}"/>
 
     </LinearLayout>
 </layout>
