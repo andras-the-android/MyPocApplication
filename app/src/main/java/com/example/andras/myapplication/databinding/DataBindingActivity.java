@@ -1,10 +1,8 @@
 package com.example.andras.myapplication.databinding;
 
 import android.databinding.DataBindingUtil;
-import com.example.andras.myapplication.databinding.ActivityDataBindingBinding;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.andras.myapplication.R;
 
