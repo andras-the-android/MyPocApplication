@@ -1,6 +1,7 @@
 package com.example.andras.myapplication.dagger;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * Created by Andras_Nemeth on 2016. 07. 27..
@@ -17,5 +18,9 @@ public class ClassToInject {
 
     public String getSentence() {
         return dependency1.getStart() + dependency2.getEnd();
+    }
+
+    public Dependency1 getDependency1() {
+        return dependency1;
     }
 }

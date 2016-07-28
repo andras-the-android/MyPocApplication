@@ -1,5 +1,8 @@
 package com.example.andras.myapplication.dagger;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -9,9 +12,14 @@ import dagger.Provides;
 @Module
 public class DaggerPocModule {
 
-    @Provides
+    @Provides @Named("real") @Singleton
     Dependency1 provideDependency1() {
         return new Dependency1Impl();
+    }
+
+    @Provides @Named("fake")
+    Dependency1 provideFakeDependency1() {
+        return new Dependency1FakeImpl();
     }
 
     @Provides
@@ -20,7 +28,7 @@ public class DaggerPocModule {
     }
 
     @Provides
-    ClassToInject provideClassToInject(Dependency1 dependency1, Dependency2 dependency2) {
+    ClassToInject provideClassToInject(@Named("real") Dependency1 dependency1, Dependency2 dependency2) {
         return new ClassToInject(dependency1, dependency2);
     }
 }
