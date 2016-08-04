@@ -17,7 +17,7 @@ public class DaggerPocModule {
         return new Dependency1Impl();
     }
 
-    @Provides @Named("fake")
+    @Provides @Named("fake") @Singleton
     Dependency1 provideFakeDependency1() {
         return new Dependency1FakeImpl();
     }

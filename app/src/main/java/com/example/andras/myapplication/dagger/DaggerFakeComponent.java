@@ -6,17 +6,12 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 /**
- * Created by Andras_Nemeth on 2016. 07. 27..
+ * Created by Andras_Nemeth on 2016. 07. 29..
  */
 @Component(modules = DaggerPocModule.class)
 @Singleton
-public interface DaggerPocComponent {
-
-    @Named("real")
-    Dependency1 getRealDependecy1();
+public interface DaggerFakeComponent {
 
     @Named("fake")
     Dependency1 getFakeDependecy1();
-
-    void injectMainActivity(DaggerPoc daggerPoc);
 }

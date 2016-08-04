@@ -3,22 +3,14 @@ package com.example.andras.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.*;
 import android.view.View;
 
-import com.example.andras.myapplication.dagger.ClassToInject;
-import com.example.andras.myapplication.dagger.DaggerDaggerPocComponent;
 import com.example.andras.myapplication.dagger.DaggerPoc;
-import com.example.andras.myapplication.dagger.DaggerPocComponent;
-import com.example.andras.myapplication.dagger.DaggerPocModule;
-import com.example.andras.myapplication.dagger.Dependency1;
 import com.example.andras.myapplication.databinding.DataBindingActivity;
 import com.example.andras.myapplication.java8.GuavaOptionalTest;
 import com.example.andras.myapplication.java8.RetrolambdaTest;
 import com.example.andras.myapplication.material.MaterialTestActivity;
 import com.example.andras.myapplication.ormlite.OrmLiteActivity;
-
-import javax.inject.Inject;
 
 
 public class MainActivity extends AppCompatActivity {
