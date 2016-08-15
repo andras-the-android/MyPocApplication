@@ -15,6 +15,11 @@ public class DaggerScopedPoc {
 
     public DaggerScopedPoc(DaggerPocComponent parentComponent) {
         this.parentComponent = parentComponent;
+        System.out.println("hello");
+        System.out.println("hello");
+        System.out.println("hello");
+        System.out.println("hello");
+        System.out.println("hello");
 
         DaggerScopedDependency dependency;
 

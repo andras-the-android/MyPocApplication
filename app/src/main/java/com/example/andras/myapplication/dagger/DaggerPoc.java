@@ -18,7 +18,7 @@ public class DaggerPoc {
     public DaggerPoc() {
         DaggerPocComponent component = DaggerDaggerPocComponent.builder()
                 .daggerPocModule(new DaggerPocModule()).build();
-        component.injectMainActivity(this);
+        component.injectDaggerPoc(this);
         Dependency1 dependency1 = component.getFakeDependecy1();
         Log.d(TAG, "Dagger test: " + dependency1.getStart());
         Log.d(TAG, "Dagger test: " + classToInject.getSentence());

@@ -18,5 +18,5 @@ public interface DaggerPocComponent {
     @Named("fake")
     Dependency1 getFakeDependecy1();
 
-    void injectMainActivity(DaggerPoc daggerPoc);
+    void injectDaggerPoc(DaggerPoc daggerPoc);
 }

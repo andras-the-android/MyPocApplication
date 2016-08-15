@@ -2,8 +2,10 @@ package com.example.andras.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.andras.myapplication.R;
 import com.google.android.gms.auth.api.Auth;
@@ -13,6 +15,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
+import com.google.android.gms.common.api.ResultCallback;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -28,6 +32,8 @@ public class  GoogleSignInActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_SIGN_IN = 4787;
     @InjectView(R.id.sign_in_button)
     SignInButton signInButton;
+    @InjectView(R.id.tw_status)
+    TextView statusTextView;
     private GoogleApiClient mGoogleApiClient;
 
     @Override
@@ -49,6 +55,21 @@ public class  GoogleSignInActivity extends AppCompatActivity {
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
+        silentSignIn();
+
+    }
+
+    private void silentSignIn() {
+        OptionalPendingResult<GoogleSignInResult> pendingResult =
+                Auth.GoogleSignInApi.silentSignIn(mGoogleApiClient);
+        if (pendingResult.isDone()) {
+            handleSignInResult(pendingResult.get());
+        } else {
+            pendingResult.setResultCallback(result -> {
+                handleSignInResult(result);
+                //hideProgressIndicator();
+            });
+        }
     }
 
     private void onConnectionFailed(ConnectionResult connectionResult) {
@@ -76,13 +97,11 @@ public class  GoogleSignInActivity extends AppCompatActivity {
         Log.d(TAG, "handleSignInResult: success" + result.isSuccess());
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
-            GoogleSignInAccount acct = result.getSignInAccount();
+            GoogleSignInAccount acc = result.getSignInAccount();
+            statusTextView.setText("Signed in successful: " + acc.getDisplayName());
 
-           // mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
-            //updateUI(true);
         } else {
-            // Signed out, show unauthenticated UI.
-            //updateUI(false);
+            statusTextView.setText("Not logged in");
         }
     }
 }
