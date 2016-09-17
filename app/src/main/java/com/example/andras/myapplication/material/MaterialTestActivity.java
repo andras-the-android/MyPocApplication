@@ -22,7 +22,7 @@ import butterknife.InjectView;
 
 public class MaterialTestActivity extends AppCompatActivity {
 
-    private static final long DRAWER_CLOSE_DELAY_MS = 350;
+    private static final long DRAWER_CLOSE_DELAY_MS = 200;
 
     @InjectView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
@@ -71,26 +71,11 @@ public class MaterialTestActivity extends AppCompatActivity {
 //        }
         };
         //http://blog.xebia.com/2015/06/09/android-design-support-navigationview/
-        drawerLayout.setDrawerListener(drawerToggle);
+        drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
 
         // listen for navigation events
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(final MenuItem menuItem) {
-                // allow some time after closing the drawer before performing real navigation
-                // so the user can see what is happening
-                drawerLayout.closeDrawer(GravityCompat.START);
-                drawerActionHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        swichView(menuItem.getItemId());
-                    }
-                }, DRAWER_CLOSE_DELAY_MS);
-
-                return true;
-            }
-        });
+        navigationView.setNavigationItemSelectedListener(this::onNavigationItemSelected);
 
         View headerView = navigationView.inflateHeaderView(R.layout.nav_header);
         TextView headerText = (TextView) headerView.findViewById(R.id.header_title);
@@ -99,6 +84,21 @@ public class MaterialTestActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         swichView(-1);
+    }
+
+    private boolean onNavigationItemSelected(final MenuItem menuItem) {
+        // allow some time after closing the drawer before performing real navigation
+        // so the user can see what is happening. This may seem a bit hacky but in practice
+        // it works noticeably faster than listening to the onDrawerClosed callback
+        drawerLayout.closeDrawer(GravityCompat.START);
+        drawerActionHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                swichView(menuItem.getItemId());
+            }
+        }, DRAWER_CLOSE_DELAY_MS);
+
+        return true;
     }
 
     private void swichView(int resId) {
