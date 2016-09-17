@@ -85,6 +85,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+    apt 'com.android.databinding:compiler:2.1.2'
     compile 'com.google.android.gms:play-services-maps:9.0.2'
     compile 'com.google.android.gms:play-services-analytics:9.0.2'
     compile 'com.google.android.gms:play-services-location:9.0.2'
