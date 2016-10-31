@@ -113,6 +113,7 @@
             android:name=".GoogleSignInActivity"
             android:label="@string/title_activity_ormlite"></activity>
         <activity android:name=".databinding.DataBindingActivity"></activity>
+        <activity android:name=".sniplets.ConstraintLayoutPerformanceActivity"></activity>
     </application>
 
 </manifest>

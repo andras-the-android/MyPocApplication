@@ -11,6 +11,7 @@ import com.example.andras.myapplication.java8.GuavaOptionalTest;
 import com.example.andras.myapplication.java8.RetrolambdaTest;
 import com.example.andras.myapplication.material.MaterialTestActivity;
 import com.example.andras.myapplication.ormlite.OrmLiteActivity;
+import com.example.andras.myapplication.sniplets.ConstraintLayoutPerformanceActivity;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -74,5 +75,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void onDataBindingButtonClick(View view) {
         startActivity(new Intent(this, DataBindingActivity.class));
+    }
+
+    public void onConstraintLayoutPerformanceButtonClick(View view) {
+        startActivity(new Intent(this, ConstraintLayoutPerformanceActivity.class));
     }
 }

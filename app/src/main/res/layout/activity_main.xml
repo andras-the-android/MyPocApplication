@@ -93,6 +93,12 @@
                 android:text="Data binding"
                 android:onClick="onDataBindingButtonClick"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Constraint layout performance"
+                android:onClick="onConstraintLayoutPerformanceButtonClick"/>
+
 
         </LinearLayout>
 
