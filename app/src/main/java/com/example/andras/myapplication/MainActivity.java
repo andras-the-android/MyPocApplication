@@ -78,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onConstraintLayoutPerformanceButtonClick(View view) {
-        startActivity(new Intent(this, ConstraintLayoutPerformanceActivity.class));
+        Intent intent = new Intent(this, ConstraintLayoutPerformanceActivity.class);
+        intent.putExtra(ConstraintLayoutPerformanceActivity.EXTRA_START_TIME, System.currentTimeMillis());
+        startActivity(intent);
     }
 }
