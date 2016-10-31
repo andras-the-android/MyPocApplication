@@ -1,14 +1,12 @@
 package com.example.andras.myapplication;
 
-import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.text.AndroidCharacter;
-import android.util.*;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -63,7 +61,7 @@ public class MapsActivity extends AppCompatActivity {
     /**
      * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
      * installed) and the map has not already been instantiated.. This will ensure that we only ever
-     * call {@link #setUpMap()} once when {@link #mMap} is not null.
+     * call {@link #setUpMap(GoogleMap)} once when {@link #mMap} is not null.
      * <p/>
      * If it isn't installed {@link SupportMapFragment} (and
      * {@link com.google.android.gms.maps.MapView MapView}) will show a prompt for the user to
@@ -93,12 +91,17 @@ public class MapsActivity extends AppCompatActivity {
      * This is where we can add markers or lines, add listeners or move the camera. In this case, we
      * just add a marker near Africa.
      * <p/>
+     * @param googleMap
      */
-    private void setUpMap() {
-        map = mapFragment.getMap();
+    private void setUpMap(GoogleMap googleMap) {
+        map = googleMap;
         LatLng latLng = new LatLng(47.485447d, 19.070975d);
         Marker marker = map.addMarker(new MarkerOptions().position(latLng).title("Marker"));
         map.setIndoorEnabled(false);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            map.setMyLocationEnabled(true);
+        }
         map.setMyLocationEnabled(true);
         //Location location = map.getMyLocation();
 //        CameraPosition position = new CameraPosition.Builder().target(new LatLng(location.getLatitude(),location.getLongitude())).build();
@@ -136,7 +139,7 @@ public class MapsActivity extends AppCompatActivity {
         @Override
         public void onMapReady(GoogleMap googleMap) {
             ((TextView)findViewById(R.id.text_view)).setText("Map ready!");
-            setUpMap();
+            setUpMap(googleMap);
         }
     }
 
