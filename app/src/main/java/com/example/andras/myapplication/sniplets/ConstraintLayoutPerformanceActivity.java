@@ -1,7 +1,6 @@
 package com.example.andras.myapplication.sniplets;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
@@ -17,21 +16,24 @@ public class ConstraintLayoutPerformanceActivity extends AppCompatActivity {
     public static final String EXTRA_START_TIME = "startTime";
 
     private static final String TAG = "ConstraintLayoutPerform";
-    private long start;
+    private long activityStartTime;
+    private long inflationDuration;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        start = getIntent().getLongExtra(EXTRA_START_TIME, System.currentTimeMillis());
-        setContentView(R.layout.constraint_layout_performance);
+        activityStartTime = getIntent().getLongExtra(EXTRA_START_TIME, System.currentTimeMillis());
+        long inflationStartTime = System.currentTimeMillis();
+//        setContentView(R.layout.constraint_layout_performance);
+        setContentView(R.layout.constraint_layout_performance_linear);
+        inflationDuration = System.currentTimeMillis() - inflationStartTime;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        long duration = System.currentTimeMillis() - start;
-        ((TextView)findViewById(R.id.textView)).setText(String.valueOf(duration));
-        Log.d(TAG, "xxxx Layout inflation time: " + duration);
+        long activityStartDuration = System.currentTimeMillis() - activityStartTime;
+        Log.d(TAG, "xxxx Layout inflation/activity start time: " + inflationDuration + " " + activityStartDuration);
 
     }
 }
