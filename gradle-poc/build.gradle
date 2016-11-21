@@ -1,0 +1,96 @@
+task hello1 {
+    doLast {
+      println 'tutorialspoint'
+    }
+}
+
+//this is the same
+task hello2 << {
+   println 'tutorialspoint'
+}
+
+//**********************************
+
+task hello41 << {
+	4.times { i ->		
+   		println 'hello #' + i
+	}
+}
+
+//this is the same
+task hello42 << {
+	4.times {	
+   		println "hello #$it"
+	}
+}
+
+//this is the same
+task hello43 << {
+	def range = 0..4;
+	range.each {	
+   		println "hello #$it"
+	}
+}
+
+//**********************************
+
+task accessor << {
+	// Using a setter method
+	project.buildDir = 'target'
+	getProject().setBuildDir('target')
+	project.setBuildDir 'target'
+
+	// Using a getter method
+	println project.buildDir
+	println getProject().getBuildDir()
+}
+
+//*************************************
+
+//http://trickyandroid.com/gradle-tip-2-understanding-syntax/
+
+def cmethod(Closure closure) {
+	closure()
+}
+
+task closuretest << {
+	def closure1 = {
+	   println "in a closure"
+	}
+
+	def closure2 = {String str -> println str}
+
+	def closure3 = {str -> println "$str"}
+	
+
+	closure1()
+	closure2("in a closure")
+	closure3("in a closure")
+
+	cmethod {
+		println "in a closure" 
+	}
+
+	cmethod() {
+		println "in a closure" 
+	}
+
+	cmethod({ println "in a closure" })
+
+}
+
+cmethod {
+	println "this way this will run independently from any task" 
+}
+
+task testStructure {
+	println 'this is configuration'
+
+	doFirst {
+		println "this will run first"
+	}
+
+	doLast {
+		println "this will run last"
+	}
+}
