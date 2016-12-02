@@ -90,11 +90,11 @@
         <activity
             android:name=".material.MaterialTestActivity"
             android:label="@string/title_activity_material_test"
-            android:theme="@style/AppBaseThemeNoActionBar"></activity>
+            android:theme="@style/AppBaseThemeNoActionBar"/>
         <activity
             android:name=".material.CollapsibleToolbarActivity"
             android:label="@string/title_activity_material_test"
-            android:theme="@style/AppBaseThemeNoActionBar"></activity>
+            android:theme="@style/AppBaseThemeNoActionBar"/>
         <activity
             android:name=".GesturesActivity"
             android:label="@string/title_activity_gestures"
@@ -105,15 +105,16 @@
         </activity>
         <activity
             android:name=".CameraActivity"
-            android:label="@string/title_activity_camera"></activity>
+            android:label="@string/title_activity_camera"/>
         <activity
             android:name=".ormlite.OrmLiteActivity"
-            android:label="@string/title_activity_ormlite"></activity>
+            android:label="@string/title_activity_ormlite"/>
         <activity
             android:name=".GoogleSignInActivity"
-            android:label="@string/title_activity_ormlite"></activity>
-        <activity android:name=".databinding.DataBindingActivity"></activity>
-        <activity android:name=".sniplets.ConstraintLayoutPerformanceActivity"></activity>
+            android:label="@string/title_activity_ormlite"/>
+        <activity android:name=".databinding.DataBindingActivity"/>
+        <activity android:name=".sniplets.ConstraintLayoutPerformanceActivity"/>
+        <activity android:name=".KeystoreActivity"/>
     </application>
 
 </manifest>

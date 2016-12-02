@@ -82,4 +82,8 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(ConstraintLayoutPerformanceActivity.EXTRA_START_TIME, System.currentTimeMillis());
         startActivity(intent);
     }
+
+    public void onKeystoreButtonClick(View view) {
+        startActivity(new Intent(this, KeystoreActivity.class));
+    }
 }
