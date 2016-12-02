@@ -34,5 +34,7 @@
     </string>
     <string name="mandatory_field">This field is mandatory</string>
     <string name="data_binding_test">And this is a text from strings.xml</string>
+    <string name="account_label">This is the label in the authenticator.xml</string>
+
 
 </resources>

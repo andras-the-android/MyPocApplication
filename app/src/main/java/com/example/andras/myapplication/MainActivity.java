@@ -86,4 +86,8 @@ public class MainActivity extends AppCompatActivity {
     public void onKeystoreButtonClick(View view) {
         startActivity(new Intent(this, KeystoreActivity.class));
     }
+
+    public void onAccountButtonClick(View view) {
+        startActivity(new Intent(this, AccountActivity.class));
+    }
 }
