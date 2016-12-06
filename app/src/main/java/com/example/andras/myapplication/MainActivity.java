@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.example.andras.myapplication.account.AccountActivity;
 import com.example.andras.myapplication.dagger.DaggerPoc;
 import com.example.andras.myapplication.databinding.DataBindingActivity;
 import com.example.andras.myapplication.java8.GuavaOptionalTest;

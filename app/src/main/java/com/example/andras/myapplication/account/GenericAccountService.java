@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.andras.myapplication;
+package com.example.andras.myapplication.account;
 
 import android.accounts.AbstractAccountAuthenticator;
 import android.accounts.Account;
