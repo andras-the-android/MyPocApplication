@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
  * useful source: https://www.captechconsulting.com/blogs/Android-Single-Account-Multiple-Application-Prescription
  * GenericAccountService is from BasicSyncAdapter sample app
  * authenticator: http://blog.udinic.com/2013/04/24/write-your-own-android-authenticator/
+ * sso: https://www.captechconsulting.com/blogs/Android-Single-Account-Multiple-Application-Prescription
  * security issues: http://security-n-tech.blogspot.de/2011/01/security-issue-exposed-by-android.html
  */
 
