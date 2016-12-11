@@ -101,7 +101,7 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.google.guava:guava:18.0'
     compile 'com.annimon:stream:1.0.5'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta2'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
 
     //dagger dependencies
     apt 'com.google.dagger:dagger-compiler:2.5'
@@ -114,8 +114,31 @@ dependencies {
 //this line has to be placed after the dependency declarations
 apply plugin: 'com.google.gms.google-services'
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.10'
+
+afterEvaluate {
+    createZipTasks()
+}
+
+//This will create a task for every release assemble task which will zip the output apk with the corresponding version txt file
+def createZipTasks() {
+    android.applicationVariants.all { variant ->
+        if (variant.buildType.name.equals(android.buildTypes.release.name)) {
+            variant.outputs.each { output ->
+                Task assembleTask = output.assemble
+                def outputDir = output.outputFile.parent
+                def versionFile = new File(outputDir, 'app_version.txt')
+                versionFile.write(String.valueOf(variant.versionCode))
+
+                Task zipTask = tasks.create(name: 'zipTask-' + assembleTask.name, type: Zip) {
+                    from versionFile
+                    from output.outputFile
+                    archiveName 'classic-android-' + variant.baseName + '-v' + variant.versionName + '.zip'
+                }
+
+                assembleTask.finalizedBy(zipTask)
+            }
+        }
+    }
 }
 
 

@@ -99,6 +99,18 @@
                 android:text="Constraint layout performance"
                 android:onClick="onConstraintLayoutPerformanceButtonClick"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Keystore"
+                android:onClick="onKeystoreButtonClick"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account"
+                android:onClick="onAccountButtonClick"/>
+
 
         </LinearLayout>
 
