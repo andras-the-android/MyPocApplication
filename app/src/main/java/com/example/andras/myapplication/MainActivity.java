@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "Gradle module test: " + getString(hu.andras.mypocapplication.module1.R.string.module_test_label)
                 + " and " + getString(R.string.flavor_test_label));
         new DaggerPoc();
+        new RxPoc().testHot();
     }
 
     public void onDragNDropButtonClick(View view) {
