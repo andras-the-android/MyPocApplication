@@ -104,4 +104,8 @@ public final class MapUtils {
     public static void zoomToSlovakia(GoogleMap map) {
         map.animateCamera(CameraUpdateFactory.newLatLngZoom(LAT_LNG_SLOVAKIA, ZOOM_SLOVAKIA));
     }
+
+    public static void logZoomLevel(GoogleMap map) {
+        map.setOnCameraMoveListener(() -> Log.d(TAG, "Camera zoom level: " + map.getCameraPosition().zoom));
+    }
 }
