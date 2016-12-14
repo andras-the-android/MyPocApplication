@@ -4,6 +4,7 @@ import android.graphics.Point;
 import android.location.Location;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
@@ -19,6 +20,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
  */
 public final class MapUtils {
 
+    private static final String TAG = "MapUtils";
     public static final int GOOGLE_MAPS_DEFAULT_ZOOM_LEVEL = 14;
     private static final LatLng LAT_LNG_SLOVAKIA = new LatLng(48.7158451d,19.7339155d);
     private static final float ZOOM_SLOVAKIA = 6.5f;
