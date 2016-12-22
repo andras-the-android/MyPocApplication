@@ -7,9 +7,12 @@ import java.util.concurrent.TimeUnit;
 import rx.Completable;
 import rx.Observable;
 import rx.Observer;
+import rx.Subscriber;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.observables.ConnectableObservable;
+import rx.schedulers.Schedulers;
 
 class RxPoc {
 
@@ -187,6 +190,40 @@ class RxPoc {
         subscribe1.unsubscribe();
         subscribe2.unsubscribe();
         log("cache test end");
+
+    }
+
+     public void testBackpressure() {
+         Observable
+             .interval(10, TimeUnit.MILLISECONDS)
+             .limit(200)
+             //this must be before observeOn
+             .onBackpressureDrop(aLong -> log("we can't do anything with " + aLong))
+             .observeOn(AndroidSchedulers.mainThread())
+             .subscribeOn(Schedulers.computation())
+             .subscribe(new Subscriber<Long>() {
+
+                 @Override
+                 public void onCompleted() {
+                     log("completed");
+                 }
+
+                 @Override
+                 public void onError(Throwable e) {
+                     log("Error: " + e.getMessage());
+                     e.printStackTrace();
+                 }
+
+                 @Override
+                 public void onNext(Long integer) {
+                     try {
+                         Thread.sleep(20);
+                     } catch (InterruptedException e) {
+                         e.printStackTrace();
+                     }
+                     log(String.valueOf(integer));
+                 }
+             });
 
     }
 
