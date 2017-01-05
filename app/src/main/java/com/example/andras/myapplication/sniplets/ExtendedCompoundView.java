@@ -1,4 +1,4 @@
-package com.velemjaro.app.screen.home.details.settlement;
+package com.example.andras.myapplication.sniplets;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -7,29 +7,22 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.velemjaro.app.R;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import com.example.andras.myapplication.R;
 
 
-public class HomeDetailsSettlementListItem extends LinearLayout {
+public class ExtendedCompoundView extends LinearLayout {
 
     private static final String NAMESPACE = "http://schemas.android.com/apk/res-auto";
-    private static final String ATTR_TITLE = "title";
-    private static final String ATTR_MEASUREMENT = "measurement";
+    private static final String ATTR_1 = "someAttr";
+    private static final String ATTR_2 = "anotherAttr";
 
-
-    @BindView(R.id.list_item_settlement_detail_title)
-    TextView titleTextView;
-    @BindView(R.id.list_item_settlement_detail_value)
-    TextView valueTextView;
-    @BindView(R.id.list_item_settlement_detail_measurement)
-    TextView measurementTextView;
+    TextView tw1;
+    TextView tw2;
+    TextView tw3;
 
     private Context context;
 
-    public HomeDetailsSettlementListItem(Context context, AttributeSet attrs) {
+    public ExtendedCompoundView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initView(context, attrs);
     }
@@ -37,26 +30,30 @@ public class HomeDetailsSettlementListItem extends LinearLayout {
     @SuppressLint("SetTextI18n")
     private void initView(Context context, AttributeSet attrs) {
         this.context = context;
-        LayoutInflater.from(context).inflate(R.layout.list_item_settlement_detail, this, true);
+        LayoutInflater.from(context).inflate(R.layout.view_compound, this, true);
+        tw1 = (TextView) findViewById(R.id.view_compound_1);
+        tw2 = (TextView) findViewById(R.id.view_compound_2);
+        tw3 = (TextView) findViewById(R.id.view_compound_3);
+
+
         setOrientation(VERTICAL);
-        ButterKnife.bind(this);
-        titleTextView.setText(getAttributeValue(attrs, ATTR_TITLE));
-        measurementTextView.setText(getAttributeValue(attrs, ATTR_MEASUREMENT));
+        tw1.setText(getAttributeValue(attrs, ATTR_1));
+        tw3.setText(getAttributeValue(attrs, ATTR_2));
         if (isInEditMode()) {
-            valueTextView.setText("Value");
+            tw2.setText("TW2");
         }
     }
 
     public void setValue(String value) {
-        valueTextView.setText(value);
+        tw2.setText(value);
     }
 
     public void setValue(int value) {
-        valueTextView.setText(String.valueOf(value));
+        tw2.setText(String.valueOf(value));
     }
 
     public void setValue(float value) {
-        valueTextView.setText(String.valueOf(value));
+        tw2.setText(String.valueOf(value));
     }
 
     private String getAttributeValue(AttributeSet attrs, String attrName) {
