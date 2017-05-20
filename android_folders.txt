@@ -1,0 +1,3 @@
+sdk: <home>\AppData\Local\Android\
+repo: <home>\.gradle\caches
+emmulator: <root>\android
