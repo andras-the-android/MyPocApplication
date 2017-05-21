@@ -13,24 +13,24 @@ import android.widget.ImageView;
 import com.example.andras.myapplication.DragController;
 import com.example.andras.myapplication.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by Andras_Nemeth on 2015.09.04..
  */
 public class RecyclerViewFragment extends Fragment {
 
-    @InjectView(R.id.recyclerView)
+    @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    @InjectView(R.id.drag_overlay)
+    @BindView(R.id.drag_overlay)
     ImageView dragOverlay ;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recycle_view, container, false);
-        ButterKnife.inject(this, view);
+        ButterKnife.bind(this, view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(new MaterialTestAdapter());
         recyclerView.addOnItemTouchListener(new DragController(recyclerView, dragOverlay));

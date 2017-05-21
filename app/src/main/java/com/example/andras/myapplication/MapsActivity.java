@@ -30,8 +30,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.maps.android.ui.IconGenerator;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 import butterknife.OnClick;
 
 public class MapsActivity extends AppCompatActivity {
@@ -39,7 +39,7 @@ public class MapsActivity extends AppCompatActivity {
     private static final String TAG = "MapsActivity";
     private MapFragment mapFragment;
 
-    @InjectView(R.id.map_layout)
+    @BindView(R.id.map_layout)
     LinearLayout layout;
     public static final int PLACE_PICKER_REQUEST = 1;
     private GoogleMap map;
@@ -48,7 +48,7 @@ public class MapsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         setUpMapIfNeeded();
     }
 

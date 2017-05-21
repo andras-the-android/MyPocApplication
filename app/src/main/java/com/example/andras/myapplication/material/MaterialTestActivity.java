@@ -17,18 +17,18 @@ import android.widget.TextView;
 
 import com.example.andras.myapplication.R;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class MaterialTestActivity extends AppCompatActivity {
 
     private static final long DRAWER_CLOSE_DELAY_MS = 200;
 
-    @InjectView(R.id.drawerLayout)
+    @BindView(R.id.drawerLayout)
     DrawerLayout drawerLayout;
-    @InjectView(R.id.toolbar)
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
-    @InjectView(R.id.navigation)
+    @BindView(R.id.navigation)
     NavigationView navigationView;
 
     ActionBarDrawerToggle drawerToggle;
@@ -38,7 +38,7 @@ public class MaterialTestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_material_test);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
         setSupportActionBar(toolbar);
 
         // set up the hamburger icon to open and close the drawer
