@@ -1,3 +1,4 @@
 sdk: <home>\AppData\Local\Android\
 repo: <home>\.gradle\caches
+      <android studio home>\gradle\m2repository 
 emmulator: <root>\android
