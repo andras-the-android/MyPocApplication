@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.example.andras.myapplication.account.AccountActivity;
 import com.example.andras.myapplication.dagger.DaggerPoc;
+import com.example.andras.myapplication.dagger2.ui.feature1.list.Feature1ListActivity;
 import com.example.andras.myapplication.databinding.DataBindingActivity;
 import com.example.andras.myapplication.java8.GuavaOptionalTest;
 import com.example.andras.myapplication.java8.RetrolambdaTest;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
                 + " and " + getString(R.string.flavor_test_label));
         new DaggerPoc();
 //        new RxPoc().testHot();
+        startActivity(new Intent(this, Feature1ListActivity.class));
     }
 
     public void onDragNDropButtonClick(View view) {

@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.andras.myapplication">
 
-    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <!--
  The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -53,11 +53,11 @@
         </activity>
         <activity
             android:name=".NotificationActivity"
-            android:label="@string/title_activity_notification"/>
+            android:label="@string/title_activity_notification" />
         <activity
             android:name=".ActionBarActivity"
             android:label="@string/title_activity_action_bar"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".PropertyAnimationActivity"
             android:label="@string/title_activity_property_animation"
@@ -92,11 +92,11 @@
         <activity
             android:name=".material.MaterialTestActivity"
             android:label="@string/title_activity_material_test"
-            android:theme="@style/AppBaseThemeNoActionBar"/>
+            android:theme="@style/AppBaseThemeNoActionBar" />
         <activity
             android:name=".material.CollapsibleToolbarActivity"
             android:label="@string/title_activity_material_test"
-            android:theme="@style/AppBaseThemeNoActionBar"/>
+            android:theme="@style/AppBaseThemeNoActionBar" />
         <activity
             android:name=".GesturesActivity"
             android:label="@string/title_activity_gestures"
@@ -107,24 +107,30 @@
         </activity>
         <activity
             android:name=".CameraActivity"
-            android:label="@string/title_activity_camera"/>
+            android:label="@string/title_activity_camera" />
         <activity
             android:name=".ormlite.OrmLiteActivity"
-            android:label="@string/title_activity_ormlite"/>
+            android:label="@string/title_activity_ormlite" />
         <activity
             android:name=".GoogleSignInActivity"
-            android:label="@string/title_activity_ormlite"/>
-        <activity android:name=".databinding.DataBindingActivity"/>
-        <activity android:name=".sniplets.ConstraintLayoutPerformanceActivity"/>
-        <activity android:name=".KeystoreActivity"/>
-        <activity android:name=".account.AccountActivity"/>
+            android:label="@string/title_activity_ormlite" />
+        <activity android:name=".databinding.DataBindingActivity" />
+        <activity android:name=".sniplets.ConstraintLayoutPerformanceActivity" />
+        <activity android:name=".KeystoreActivity" />
+        <activity android:name=".account.AccountActivity" />
 
         <service android:name=".account.GenericAccountService">
             <intent-filter>
                 <action android:name="android.accounts.AccountAuthenticator" />
             </intent-filter>
-            <meta-data android:name="android.accounts.AccountAuthenticator" android:resource="@xml/authenticator" />
+
+            <meta-data
+                android:name="android.accounts.AccountAuthenticator"
+                android:resource="@xml/authenticator" />
         </service>
+
+        <activity android:name=".dagger2.ui.feature1.list.Feature1ListActivity" />
+        <activity android:name=".dagger2.ui.feature1.detail.Feature1DetailActivity"></activity>
     </application>
 
 </manifest>
