@@ -2,10 +2,12 @@ package com.example.andras.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.andras.myapplication.R;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -14,9 +16,10 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
+import com.google.android.gms.common.api.ResultCallback;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.InjectView;
 import butterknife.OnClick;
 
 /**
@@ -27,9 +30,9 @@ public class  GoogleSignInActivity extends AppCompatActivity {
     private static final String TAG = "GoogleSignInActivity";
 
     private static final int REQUEST_CODE_SIGN_IN = 4787;
-    @BindView(R.id.sign_in_button)
+    @InjectView(R.id.sign_in_button)
     SignInButton signInButton;
-    @BindView(R.id.tw_status)
+    @InjectView(R.id.tw_status)
     TextView statusTextView;
     private GoogleApiClient mGoogleApiClient;
 
@@ -37,7 +40,7 @@ public class  GoogleSignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        ButterKnife.bind(this);
+        ButterKnife.inject(this);
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
