@@ -7,9 +7,16 @@ import android.app.Application;
  */
 public class MyPocApplication extends Application {
 
+    private static MyPocApplication instance;
+
+    public static MyPocApplication getInstance() {
+        return instance;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+        instance = this;
         Log.init(this);
     }
 

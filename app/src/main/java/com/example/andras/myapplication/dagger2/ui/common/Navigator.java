@@ -1,6 +1,6 @@
 package com.example.andras.myapplication.dagger2.ui.common;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
 import com.example.andras.myapplication.dagger2.ui.feature1.detail.Feature1DetailActivity;
@@ -11,13 +11,13 @@ import com.example.andras.myapplication.dagger2.ui.feature1.detail.Feature1Detai
 
 public class Navigator {
 
-    private Activity activity;
+    private Context context;
 
-    public Navigator(Activity activity) {
-        this.activity = activity;
+    public Navigator(Context context) {
+        this.context = context;
     }
 
     public void goToFeature1DetailScreen() {
-        activity.startActivity(new Intent(activity, Feature1DetailActivity.class));
+        context.startActivity(new Intent(context, Feature1DetailActivity.class));
     }
 }

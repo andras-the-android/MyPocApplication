@@ -1,7 +1,9 @@
 package com.example.andras.myapplication.dagger2.di;
 
 import android.app.Activity;
+import android.content.Context;
 
+import com.example.andras.myapplication.MyPocApplication;
 import com.example.andras.myapplication.dagger2.ui.common.Navigator;
 
 import javax.inject.Singleton;
@@ -16,16 +18,16 @@ import dagger.Provides;
 @Module
 public class CommonModule {
 
-    private Activity activity;
+    private Context context;
 
-    public CommonModule(Activity activity) {
-        this.activity = activity;
+    public CommonModule() {
+        this.context = MyPocApplication.getInstance();
     }
 
     @Provides
-    @Singleton
+    @ActivityScope
     Navigator provideNavigator() {
-        return new Navigator(activity);
+        return new Navigator(context);
     }
 
 }

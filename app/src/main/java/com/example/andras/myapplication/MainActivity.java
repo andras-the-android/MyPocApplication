@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
                 + " and " + getString(R.string.flavor_test_label));
         new DaggerPoc();
 //        new RxPoc().testHot();
+//        startDaggerTest();
+    }
+
+    private void startDaggerTest() {
         startActivity(new Intent(this, Feature1ListActivity.class));
     }
 
