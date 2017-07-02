@@ -227,6 +227,15 @@ class RxPoc {
 
     }
 
+    public void testErrorHandling() {
+        Observable.fromCallable(() ->  Integer.parseInt("not a number"))
+                .onErrorResumeNext(Observable.just(5))
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.computation())
+                .subscribe(integer -> log("corrected value: " + integer), Throwable::printStackTrace);
+
+    }
+
     private void log(String log) {
         System.out.println("rxpoc " + log);
     }
