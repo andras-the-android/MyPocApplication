@@ -2,6 +2,7 @@ package com.example.andras.myapplication.databinding;
 
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.view.View;
 
 import com.example.andras.myapplication.BR;
 import com.example.andras.myapplication.R;
@@ -42,5 +43,9 @@ public class DummyModel extends BaseObservable{
     public void setAnotherText(String anotherText) {
         this.anotherText = anotherText;
         notifyPropertyChanged(BR.anotherText);
+    }
+
+    public void onClearButtonClick(View button) {
+        setAnotherText("");
     }
 }

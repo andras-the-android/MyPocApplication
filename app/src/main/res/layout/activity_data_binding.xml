@@ -61,6 +61,7 @@
             android:text="Two-way binding"
             />
 
+        <!--this @= sign makes possible to copy the textbox value to the model automatically-->
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -70,6 +71,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@={model.anotherText}"/>
+
+        <Button
+            android:id="@+id/clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{model::onClearButtonClick}"
+            android:text="Clear"/>
 
     </LinearLayout>
 </layout>
