@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.example.andras.myapplication.account.AccountActivity;
+import com.example.andras.myapplication.architecture.ArchitectureActivity;
 import com.example.andras.myapplication.dagger.DaggerPoc;
 import com.example.andras.myapplication.dagger2.ui.feature1.list.Feature1ListActivity;
 import com.example.andras.myapplication.databinding.DataBindingActivity;
@@ -97,5 +98,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void onAccountButtonClick(View view) {
         startActivity(new Intent(this, AccountActivity.class));
+    }
+
+    public void onArchitecturalComponentsButtonClick(View view) {
+        startActivity(new Intent(this, ArchitectureActivity.class));
     }
 }

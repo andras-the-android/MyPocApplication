@@ -130,7 +130,8 @@
         </service>
 
         <activity android:name=".dagger2.ui.feature1.list.Feature1ListActivity" />
-        <activity android:name=".dagger2.ui.feature1.detail.Feature1DetailActivity"></activity>
+        <activity android:name=".dagger2.ui.feature1.detail.Feature1DetailActivity" />
+        <activity android:name=".architecture.ArchitectureActivity"></activity>
     </application>
 
 </manifest>

@@ -111,6 +111,12 @@
                 android:text="Account"
                 android:onClick="onAccountButtonClick"/>
 
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Architectural components"
+                android:onClick="onArchitecturalComponentsButtonClick"/>
+
 
         </LinearLayout>
 
