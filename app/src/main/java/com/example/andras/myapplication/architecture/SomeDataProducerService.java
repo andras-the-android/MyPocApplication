@@ -11,15 +11,15 @@ import java.util.function.Consumer;
 
 public class SomeDataProducerService {
 
-    public static final SomeDataProducerService INSTANCE = new SomeDataProducerService();
-
     private static final String TAG = "SomeDataProducerService";
 
     private int count;
     private boolean running;
     private Consumer<String> callback;
+    private String name;
 
-    private SomeDataProducerService() {
+    public  SomeDataProducerService(String name) {
+        this.name = name;
     }
 
     public void setCallback(Consumer<String> callback) {
@@ -39,7 +39,7 @@ public class SomeDataProducerService {
 
     private void run() {
         if (running) {
-            String data = "blah" + count++;
+            String data = name + count++;
             callback.accept(data);
             Log.d(TAG, data);
             new Handler().postDelayed(this::run, 1000);
