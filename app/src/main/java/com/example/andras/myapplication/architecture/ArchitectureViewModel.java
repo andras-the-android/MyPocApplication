@@ -14,9 +14,9 @@ public class ArchitectureViewModel extends ViewModel implements LifecycleObserve
     private SomeDataProducerService service;
     private ArchitectureActivity view;
 
-    public ArchitectureViewModel(SomeDataProducerService service) {
-        this.service = service;
-        service.setCallback(this::onDataReceived);
+
+    public ArchitectureViewModel() {
+        Injector.inject(this);
     }
 
     public void setView(ArchitectureActivity view) {
@@ -35,5 +35,10 @@ public class ArchitectureViewModel extends ViewModel implements LifecycleObserve
 
     private void onDataReceived(String s) {
         view.displayText(s);
+    }
+
+    public void setService(SomeDataProducerService service) {
+        this.service = service;
+        service.setCallback(this::onDataReceived);
     }
 }

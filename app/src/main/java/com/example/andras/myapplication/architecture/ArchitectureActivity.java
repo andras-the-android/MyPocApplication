@@ -3,6 +3,8 @@ package com.example.andras.myapplication.architecture;
 import android.arch.lifecycle.LifecycleActivity;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Transformations;
+import android.arch.lifecycle.ViewModel;
+import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +26,8 @@ public class ArchitectureActivity extends LifecycleActivity {
         Injector.inject(this);
 
         text1 = findViewById(R.id.text1);
+
+        viewModel = ViewModelProviders.of(this).get(ArchitectureViewModel.class);
         viewModel.setView(this);
         getLifecycle().addObserver(viewModel);
 

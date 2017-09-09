@@ -3,7 +3,8 @@ package com.example.andras.myapplication.architecture;
 import android.os.Handler;
 import android.util.Log;
 
-import java.util.function.Consumer;
+import com.annimon.stream.function.Consumer;
+
 
 /**
  * Created by Andras_Nemeth on 2017. 07. 31..
