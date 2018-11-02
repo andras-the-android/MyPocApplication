@@ -1,19 +1,17 @@
 package com.example.andras.myapplication.architecture;
 
-import android.arch.lifecycle.LifecycleActivity;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.Transformations;
-import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.andras.myapplication.R;
 
 
-public class ArchitectureActivity extends LifecycleActivity {
+public class ArchitectureActivity extends AppCompatActivity {
 
     private TextView text1;
     ArchitectureViewModel viewModel;
