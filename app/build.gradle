@@ -79,14 +79,14 @@ android {
 //        }
     }
 
-    dataBinding {
-        enabled = true
-    }
+//    dataBinding {
+//        enabled = true
+//    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    annotationProcessor 'com.android.databinding:compiler:2.2.3'
+//    annotationProcessor 'com.android.databinding:compiler:2.2.3'
     implementation 'com.google.android.gms:play-services-maps:11.0.4'
     implementation 'com.google.android.gms:play-services-analytics:11.0.4'
     implementation 'com.google.android.gms:play-services-location:11.0.4'
