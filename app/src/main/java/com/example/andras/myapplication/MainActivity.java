@@ -12,6 +12,7 @@ import com.example.andras.myapplication.dagger2.ui.feature1.list.Feature1ListAct
 import com.example.andras.myapplication.databinding.DataBindingActivity;
 import com.example.andras.myapplication.java8.GuavaOptionalTest;
 import com.example.andras.myapplication.java8.RetrolambdaTest;
+import com.example.andras.myapplication.kotlin.KotlinSketch;
 import com.example.andras.myapplication.material.MaterialTestActivity;
 import com.example.andras.myapplication.ormlite.OrmLiteActivity;
 import com.example.andras.myapplication.sniplets.ConstraintLayoutPerformanceActivity;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        new KotlinSketch().start();
         new RetrolambdaTest();
         new GuavaOptionalTest();
         Log.d(TAG, "Gradle module test: " + getString(hu.andras.mypocapplication.module1.R.string.module_test_label)
