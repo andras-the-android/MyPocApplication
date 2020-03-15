@@ -4,7 +4,7 @@ import android.content.ClipData;
 import android.content.ClipDescription;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.DragEvent;
 import android.view.View;
@@ -29,10 +29,10 @@ public class DragDropActivity extends AppCompatActivity {
         target2.setOnLongClickListener(longClickListener);
         target3.setOnLongClickListener(longClickListener);
 
-        source.setOnDragListener(new MyDragListener((TextView) findViewById(R.id.sourceTw)));
-        target1.setOnDragListener(new MyDragListener((TextView) findViewById(R.id.target1Tw)));
-        target2.setOnDragListener(new MyDragListener((TextView) findViewById(R.id.target2Tw)));
-        target3.setOnDragListener(new MyDragListener((TextView) findViewById(R.id.target3Tw)));
+        source.setOnDragListener(new MyDragListener(findViewById(R.id.sourceTw)));
+        target1.setOnDragListener(new MyDragListener(findViewById(R.id.target1Tw)));
+        target2.setOnDragListener(new MyDragListener(findViewById(R.id.target2Tw)));
+        target3.setOnDragListener(new MyDragListener(findViewById(R.id.target3Tw)));
 
     }
 
@@ -50,7 +50,7 @@ public class DragDropActivity extends AppCompatActivity {
             }
             return false;
         }
-    };
+    }
 
     private class MyDragListener implements View.OnDragListener {
 
@@ -108,7 +108,7 @@ public class DragDropActivity extends AppCompatActivity {
 
                 case DragEvent.ACTION_DROP:
                     ClipData.Item item = event.getClipData().getItemAt(0);
-                    ImageView source = (ImageView) findViewById(Integer.parseInt(item.getText().toString()));
+                    ImageView source = findViewById(Integer.parseInt(item.getText().toString()));
 
                     if (imageView != source) {
                         imageView.setImageDrawable(source.getDrawable());

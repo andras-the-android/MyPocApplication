@@ -1,6 +1,6 @@
 package com.example.andras.myapplication.architecture;
 
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.LiveData;
 
 /**
  * Created by Andras_Nemeth on 2017. 08. 06..

@@ -1,6 +1,6 @@
 package com.example.andras.myapplication.dagger2.ui.feature1.list;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 

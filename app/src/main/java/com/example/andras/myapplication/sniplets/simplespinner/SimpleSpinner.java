@@ -5,8 +5,8 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.ListPopupWindow;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.ListPopupWindow;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,7 +56,7 @@ public class SimpleSpinner extends LinearLayout {
 
     private void init(Context context) {
         view = LayoutInflater.from(context).inflate(R.layout.simple_spinner, this, true);
-        container = (FrameLayout) findViewById(R.id.content_container);
+        container = findViewById(R.id.content_container);
         view.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

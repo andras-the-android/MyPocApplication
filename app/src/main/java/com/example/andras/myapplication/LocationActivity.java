@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -64,9 +64,9 @@ public class LocationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
-        twStatus = (TextView) findViewById(R.id.tw_status);
-        twLatitude = (TextView) findViewById(R.id.tw_latitude);
-        twLongitude = (TextView) findViewById(R.id.tw_longitude);
+        twStatus = findViewById(R.id.tw_status);
+        twLatitude = findViewById(R.id.tw_latitude);
+        twLongitude = findViewById(R.id.tw_longitude);
         //requestTurnOnLocation();
         buildGoogleApiClient();
     }

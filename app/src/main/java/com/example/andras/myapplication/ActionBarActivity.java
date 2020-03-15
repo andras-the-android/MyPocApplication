@@ -1,7 +1,7 @@
 package com.example.andras.myapplication;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.ActionMode;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -27,7 +27,7 @@ public class ActionBarActivity extends AppCompatActivity {
         registerForContextMenu(findViewById(R.id.twContextMenu));
 
         //action mode for any item
-        TextView twContextualAction = (TextView) findViewById(R.id.twContextualAction);
+        TextView twContextualAction = findViewById(R.id.twContextualAction);
         twContextualAction.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -42,7 +42,7 @@ public class ActionBarActivity extends AppCompatActivity {
         });
 
         //action mode for lists
-        listView = (ListView) findViewById(R.id.list_view);
+        listView = findViewById(R.id.list_view);
         adapter = new ArrayAdapter<String>(this, R.layout.list_item, R.id.text_view, new String[]{"First", "Second", "Third"});
         listView.setAdapter(adapter);
         listView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE_MODAL);
@@ -127,7 +127,7 @@ public class ActionBarActivity extends AppCompatActivity {
         public void onDestroyActionMode(ActionMode mode) {
             actionMode = null;
         }
-    };
+    }
 
     private class MyMultiChoiceModelListener extends MyActionModeCallback implements AbsListView.MultiChoiceModeListener  {
 

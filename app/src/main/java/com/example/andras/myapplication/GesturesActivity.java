@@ -2,9 +2,9 @@ package com.example.andras.myapplication;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.VelocityTrackerCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.view.MotionEventCompat;
+import androidx.core.view.VelocityTrackerCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
